@@ -1,0 +1,92 @@
+.footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 0;
+  padding: 4.5em 1em 1.5em;
+  background-color: $footer;
+  min-height: 100vh;
+
+  h1 {
+    text-align: center;
+    color: $light_yellow;
+  }
+
+  > .flex-row {
+    margin-top: 3em;
+  }
+
+  @include breakpoint($tab_device) {
+    padding-right: 3em;
+    padding-left: 3em;
+  }
+
+  @include breakpoint($medium_device) {
+    padding-right: 6em;
+    padding-left: 6em;
+  }
+}
+
+.footer-row {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  @include breakpoint($tab_device) {
+    flex-direction: row;
+  }
+}
+
+.footer__compact {
+  li + li {
+    margin-top: 0.5em !important;
+  }
+}
+
+.footer-nav {
+  color: $light_yellow;
+  flex-grow: 1;
+  width: calc(100% - 1em - 1em);
+
+  li {
+    font-size: 0.9em;
+    // margin-top: 0;
+    a {
+      @extend %main-font;
+      color: $light_yellow;
+      text-decoration: none;
+    }
+  }
+
+  li + li {
+    margin-top: 1.5rem;
+  }
+
+  li:nth-child(1) {
+    font-size: 1.1em;
+    margin-bottom: 1.45em;
+    text-transform: uppercase;
+  }
+
+  @include breakpoint($tab_device) {
+    width: auto;
+    margin-top: 0;
+  }
+}
+
+.footer-nav + .footer-nav {
+  padding-top: 1em;
+  border-top: 2px solid $white;
+
+  @include breakpoint($tab_device) {
+    padding-top: 0;
+    border-top: none;
+  }
+}
+
+.copyright {
+  color: darken($color: $copyright, $amount: 10%);
+  font-size: 0.75em;
+  margin-top: 6em;
+  text-align: center;
+}

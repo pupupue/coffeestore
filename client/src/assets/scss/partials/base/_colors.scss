@@ -1,0 +1,39 @@
+//refractor this to be primary secondary!
+$primary: #332c33;
+$primary-light: #5c555c;
+$primary-dark: #0c000c;
+$secondary: #d27a52;
+$secondary-light: #ffaa7f;
+$secondary-dark: #9d4d28;
+
+$background_white: #fbf9e3;
+
+//heading
+$light_yellow: #f6f5c5; 
+$text_main: #323e48;
+$text_main-light: #5c6873;
+
+$dark_text_color: $text_main;
+
+$copper: $secondary;
+$coffee: #6f4e37;
+$white: #fff;
+$footer: #4d3e32;
+$copyright: #b3b39d;
+$transparent: rgba(0,0,0,0);
+
+.dark-copper {
+  color: $primary;
+}
+
+.clr-main {
+  color: $dark_text_color;
+}
+
+.clr-light {
+  color: $light_yellow;
+}
+
+.clr-copper {
+  color: $copper;
+}

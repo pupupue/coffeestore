@@ -1,0 +1,17 @@
+@mixin alert-variant($color, $bg-color) {
+  padding: 0.3em 0.5em;
+  border: 1px solid $color;
+  color: $color;
+  background-color: $bg-color;
+}
+//use with
+/*
+
+.alert-info {
+ @include alert-variant(blue, lightblue)
+}
+.alert-danger {
+ @include alert-variant(red, pink)
+}
+
+*/

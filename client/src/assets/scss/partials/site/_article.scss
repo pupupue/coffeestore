@@ -1,0 +1,155 @@
+.articles {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+
+  * + * {
+    margin: 0;
+  }
+}
+
+.article {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  margin: 0;
+  min-height: calc(100vh - 90px);
+  min-width: auto;
+
+  * + * {
+    margin-top: 1.5em;
+  }
+  
+  h3 {
+    color: $text_main-light;
+    font-size: 0.8em;
+  }
+
+  h2 {
+    color: $dark_text_color;
+    margin-top: .25em;
+  }
+  
+  >.img {
+    margin-top: 0;
+    min-width: 100%;
+    min-height: calc(61vh - 90px);
+    background-color: gray;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .article__content {
+    display: flex;
+    flex-direction: column;
+
+    color: $dark_text_color;
+    // position: relative;
+    padding: 1.5em 1em;
+
+    > button {
+      width: 12rem;
+
+      @include breakpoint($medium_device) {
+        margin-top: auto;
+      }
+    }
+  }
+
+  @include breakpoint($tab_device) {
+    min-height: calc(90vh - 90px);
+
+    >.article__content {
+      padding: 3em;
+    }
+  }
+
+  @include breakpoint($medium_device) {
+    flex-direction: row;
+    min-height: calc(100vh - 90px);
+
+    >.article__content {
+      margin-top: 0;
+      padding: 3em 6em;
+      min-width: 61%;
+    }
+
+    >.img {
+      min-width: 39%;
+    }
+  }
+}
+
+
+/**
+*   Alternating Articles:
+*/
+
+// 1st article 1 + 2n
+.article:nth-of-type(2n - 1){
+  background-color: $light_yellow;
+
+  &::before {
+
+  }
+
+  @include breakpoint($medium_device) {
+    flex-direction: row-reverse;
+  }
+}
+
+// 2nd article 2n
+.article:nth-of-type(2n){ 
+  background-color: $background_white;
+  text-align: right; 
+
+  .article__content {
+    > button {
+      margin-left: auto;
+    }
+  }
+  
+
+  @include breakpoint($medium_device) {
+    flex-direction: row;
+
+
+  }
+}
+
+
+
+// .article-dark{
+//   padding: 0;
+//   background-color: $background_white;
+//   flex-wrap: wrap;
+//   justify-content: space-between;
+//   //same as hero
+//   text-align: center;
+//   background-size: 100%;
+//   background-repeat: no-repeat;
+//   color: $light_yellow;
+//   text-shadow: 0.1em 0.1em 0.3em #000;
+
+//    .media {
+//     color: $coffee;
+//     margin: 0;
+//   }
+
+//   .article__content {
+//     margin: -.5em 0 0;
+//     padding-bottom: 3em;
+//     position: relative;
+//     flex-grow: 1;
+//     top: 0;
+//     color: $light_yellow;
+//     background-color: $primary;
+
+//     h2 {
+//       color: $light_yellow;
+//       padding-top: 1.5rem;
+//     }
+//   }
+// }

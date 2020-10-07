@@ -1,0 +1,58 @@
+/**
+    To apply:
+
+  element {
+    ...
+    transform: background-color: #tosomecolor; //or keyframe
+    transition: transform/{keyframe} 0.5s ease-out or (cubic-brezier()),
+                //chain transform;
+  }
+
+*/
+
+@keyframes img-move-right {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(1em, -1em);
+  }
+}
+
+@keyframes img-move-left {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(-1em, 1em);
+  }
+}
+
+
+
+
+
+
+@keyframes shake {
+  0%,
+  100% {
+  transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+  transform: translateX(-0.4em);
+  }
+  20%,
+  40%,
+  60% {
+  transform: translateX(0.4em);
+  }
+  80% {
+  transform: translateX(0.3em);
+  }
+  90% {
+  transform: translateX(-0.3em);
+  }
+}

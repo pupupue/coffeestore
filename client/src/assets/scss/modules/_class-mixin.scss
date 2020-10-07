@@ -1,0 +1,7 @@
+@mixin col-x-size-columns($size, $columns) {
+  @for $i from 1 through $columns {
+    .col-#{$i}-#{$size} {
+      //
+    }
+  }
+}

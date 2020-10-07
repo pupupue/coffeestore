@@ -1,0 +1,59 @@
+.intro__item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slick-slide {
+  margin-top: 0;
+  height: calc(100vh - 90px - 90px);
+
+  > div {
+    height: inherit;
+  }
+}
+
+.intro__main {
+
+  > .wrap {
+    color: $light_yellow;
+    font-size: 1rem;
+    text-shadow: 2px 2px 4px $primary-dark;
+    position: absolute;
+    top: 30%;
+    left: 2em;
+    right: 2em;
+
+    * + * {
+      margin: 2.5em 0 0;
+    }
+
+    > h3 {
+      color: inherit;
+    }
+
+    > h4 {
+      font-size: 0.9em;
+    }
+    > p {
+      font-size: 0.75em;
+    }
+  }
+  
+  @include breakpoint($tab_device) {
+    > .wrap {
+      top: 32%;
+      left: 4em;
+      right: 4em;
+    }
+  }
+
+  @include breakpoint($medium_device) {
+    > .wrap {
+      top: 37%;
+      left: 8em;
+      right: 8em;
+    }
+  }
+}
+

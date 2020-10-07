@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const gravatar = require('gravatar');
+const config = require('config');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const config = require('config');
 const { check, validationResult } = require('express-validator');
-const normalize = require('normalize-url');
 
 const User = require('../../models/User');
 
@@ -39,19 +37,14 @@ router.post(
           .json({ errors: [{ msg: 'User already exists' }] });
       }
 
-      const avatar = normalize(
-        gravatar.url(email, {
-          s: '200',
-          r: 'pg',
-          d: 'mm'
-        }),
-        { forceHttps: true }
-      );
-
+      //permissions are hardcoded
+      //right now there exists no view with auth to give higher permissions
+      //to user, can be in db directly (manually) or here
+      //or make a view and some secure ports
       user = new User({
         name,
         email,
-        avatar,
+        permissions: 'none',
         password
       });
 

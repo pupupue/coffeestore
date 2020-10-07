@@ -1,0 +1,21 @@
+.box-80 {
+  max-width: 20%;
+  padding: 2rem 5rem
+  //position: absolute;
+}
+
+.box-text {
+  position: relative;
+  left: 10px;
+}
+
+.bigtext {
+  font-size: 7em;
+}
+
+.articleee {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}

@@ -1,0 +1,41 @@
+.food-menu__container {
+  display: flex;
+  padding: 3em 3em;
+
+  @include breakpoint($tab_device) {
+    padding: 3em 6em;
+  }
+
+  @include breakpoint($medium_device) {
+    padding: 6em 8em;
+  }
+
+  @include breakpoint($big_device) {
+    padding: 6em 14em;
+  }
+}
+
+.food-menu {
+  padding: 3em 1em;
+  border: 1px solid $primary-light;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: $primary;
+
+  span {
+    font-size: 1.3em;
+    text-transform: uppercase;
+  }
+
+  p {
+    color: $primary-light;
+  }
+
+  @include breakpoint($tab_device) {
+    padding: 3em 3em;
+  }
+
+
+}

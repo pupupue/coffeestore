@@ -1,16 +1,17 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Navbar from './components/layout/Navbar';
-import Landing from './components/layout/Landing';
+import Navbar from './parts/Navbar';
+import Footer from './parts/Footer';
 import Routes from './components/routing/Routes';
 
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
-import { loadUser } from './actions/auth';
+import { loadUser } from './store/actions/auth';
 import setAuthToken from './utils/setAuthToken';
 
-import './App.css';
+// import './App.css';
+import './main.css';
 
 const App = () => {
   useEffect(() => {
@@ -21,13 +22,13 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <Fragment>
+        <div className="flex-container">
           <Navbar />
-            <Switch>
-              <Route exact path="/" component={Landing} />
-              <Route component={Routes} />
-            </Switch>
-        </Fragment>
+          <Switch>
+            <Route component={Routes} />
+          </Switch>
+          <Footer />
+        </div>
       </Router>
     </Provider>
   );

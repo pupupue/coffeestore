@@ -1,0 +1,29 @@
+/**
+*   Screen sizes:
+*/
+
+$sm_mobile: 16rem; // 256
+$large_mobile: 36rem; //576
+$tab_device: 48rem; //768
+$medium_device : 62rem; //992
+$big_device: 75rem; //1200
+
+/** 
+*   Fonts:
+*/
+$font: 'notoSerif';
+$fontBold: 'notoSerifBold';
+$fontBoldItalic: 'notoSerifBoldItalic';
+$fontItalic: 'notoSerifItalic';
+
+/**
+*   Constants:  
+*/
+$container_pad: 1rem;
+$phi_up: 1.618em;
+$phi_down: 0.618em;
+$header_height: 90px;
+
+// @include breakpoint($) {
+  
+// }

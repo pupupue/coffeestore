@@ -3,16 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "fontfaceobserver": "^2.1.0",
+    "gulp-cli": "^2.3.0",
+    "leaflet": "^1.7.1",
     "moment": "^2.24.0",
+    "pattern.css": "^1.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-leaflet": "^2.7.0",
     "react-moment": "^0.9.7",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.3",
+    "react-slick": "^0.27.11",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
+    "slick-carousel": "^1.8.1",
     "uuid": "^7.0.2"
   },
   "scripts": {
@@ -36,5 +43,14 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000/",
+  "devDependencies": {
+    "autoprefixer": "^10.0.0",
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.2",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "precss": "^4.0.0"
+  }
 }

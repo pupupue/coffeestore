@@ -1,0 +1,42 @@
+.hero {
+  width: 100%;
+  height: calc(100vh - 90px);
+  padding: 0;
+  margin: 0;
+  background-color: $primary-light;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  span {
+    color: $light_yellow;
+    text-shadow: -3px 3px 6px $secondary-dark;
+    font-size: 3.5em;
+    line-height: 1.5em;
+    text-transform: uppercase;
+    text-align: center;
+
+    @include breakpoint($large_mobile) {
+      font-size: 4em;
+    }
+  }
+}
+
+.hero__text {
+  background-color: $white;
+  padding: 3em 1em;
+  margin: 0;
+  width: 100%;
+  min-height: calc(100vh - 90px - 90px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  @include breakpoint($tab_device) {
+    padding: 6em 3em;
+  }
+}

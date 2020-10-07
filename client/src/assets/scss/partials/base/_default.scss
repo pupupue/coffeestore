@@ -1,0 +1,60 @@
+/**
+*   default settings
+*/
+
+:root {
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
+*, ::before, ::after {
+  box-sizing: inherit;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: lighten($copper, 20%);
+}
+
+::-moz-selection {
+  background: lighten($copper, 20%);
+}
+
+body {
+  @extend %main-font;
+  @extend .clr-main;
+
+  font-size: calc(1.1em + 1vw*0.2);
+
+  @include breakpoint($large_mobile) {
+    font-size: calc(1.2em + 1vw*0.15); 
+  }
+
+  @include breakpoint($tab_device) {
+    // font-size: calc(1.2em + 1vw*0.2);
+  }
+
+  @include breakpoint($big_device) {
+    //21px
+    font-size: 1.3125em;
+  }
+}
+
+body * + * {
+  margin: 1.5rem 0 0;
+
+  @include breakpoint($tab_device) {
+    margin: 3rem 0 0;
+  }
+}
+
+#root {
+  margin-top: 0;
+}
+
+img {
+  max-width: 100%;
+}

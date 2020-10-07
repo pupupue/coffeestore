@@ -1,0 +1,56 @@
+.map__container {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1em 3em;
+
+  * + * {
+    margin-top: 0;
+  }
+
+  @include breakpoint($large_mobile) {
+    flex-direction: row-reverse;
+    height: 90vh;
+  }
+}
+
+.leaflet-container {
+  //override base
+  min-height: 80vh;
+
+  * + * {
+    margin-top: 0;
+  }
+
+  @include breakpoint($large_mobile) {
+    margin: 0 1em;
+    min-height: 10vh;
+    flex: 0 1 70%;
+  }
+}
+
+.location__List {
+  overflow:auto;
+
+  * + * {
+    margin-top: .75em;
+  }
+
+  .button {
+    font-size: 0.75em;
+  }
+
+  @include breakpoint($large_mobile) {
+    flex: 0 1 30%;
+    padding: 1em;
+  }
+}
+
+.location__List__child {
+  padding: 0 1em;
+
+  h2 {
+    font-size: 1.3em;
+  }
+}

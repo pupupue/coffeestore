@@ -1,0 +1,94 @@
+// to copy
+/*
+
+@mixin template {
+  @extend %font-base;
+}
+
+*/
+
+// ul rem
+ul {
+  font-size: 1.1rem;
+}
+
+// foit
+.fonts-loading body {
+  visibility: hidden;
+  line-height: 1.5em;
+  letter-spacing: 0.005em;
+  font-style: normal;
+}
+
+.fonts-loaded body,
+.fonts-failed body {
+  visibility: visible;
+}
+
+//fontbase
+%font-base {
+  line-height: 1.5em;
+  letter-spacing: 0.005em;
+  font-style: normal;
+}
+
+%main-font {
+  @extend %font-base;
+  font-family: $font;
+}
+
+%bold-font {
+  @extend %font-base;
+  font-family: $fontBold;
+}
+
+@mixin heading {
+  @extend %bold-font;
+  line-height: 1.1em;
+  letter-spacing: 0.015em;
+}
+
+h1 {
+  @include heading;
+  @extend .clr-copper;
+  font-size: $phi_up * 1.5;
+  text-transform: capitalize;
+}
+
+h2 {
+  @include heading;
+  font-size: $phi_up;
+  text-transform: uppercase;
+}
+
+h3 {
+  //rn same as h2
+  @include heading;
+  @extend .clr-main;
+  font-size: $phi_up;
+  text-transform: uppercase;
+}
+
+h4 {
+  @include heading;
+  @extend .clr-light;
+  font-size: $phi_up;
+  text-transform: uppercase;
+}
+
+h5 {
+  @include heading;
+  @extend .clr-copper;
+  font-size: $phi_down;
+  text-transform: uppercase;
+}
+
+p {
+  @extend %main-font;
+}
+
+li {
+  a {
+    display: block;
+  }
+}

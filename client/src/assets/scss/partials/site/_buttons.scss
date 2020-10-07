@@ -1,0 +1,98 @@
+.button {
+  // display: inline-block;
+  border: 0;
+  border-radius: 0.3em;
+  font-size: 1em;
+  white-space: nowrap;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
+
+
+.button-dark {
+  color: $white;
+  background-color: $primary;
+  box-shadow: -0.1em 0.1em $primary, -0.2em 0.2em $primary, -0.3em 0.3em $primary, -0.4em 0.4em $primary, -0.5em 0.5em $primary;
+  border: 0.15em solid $white;
+  text-transform: uppercase;
+
+  &:link, &:visited, &:focus, &:active {
+    outline: none;
+  }
+
+  &:hover {
+    color: $white;
+    background-color: $primary;
+    transition: 
+      transform 0.2s ease-in,
+      box-shadow 0.2s ease-in;
+    transform: translate(-0.2em, 0.2em);
+    box-shadow: -0.1em 0.1em $primary, -0.2em 0.2em $primary, -0.3em 0.3em $primary;
+  }
+
+  &:active, &:focus {
+    color: $white;
+    background-color: $primary-light;
+    transform: translate(-0.3em, 0.3em);
+    box-shadow: -0.1em 0.1em $primary-light, -0.2em 0.2em $primary-light;
+  }
+}
+
+
+.button-dark-inverse {
+  color: $white;
+  background-color: $primary;
+  box-shadow: 0.1em 0.1em $primary, 0.2em 0.2em $primary, 0.3em 0.3em $primary, 0.4em 0.4em $primary, 0.5em 0.5em $white;
+  border: 0.15em solid $white;
+  text-transform: uppercase;
+
+  &:link, &:visited, &:focus, &:active {
+    outline: none;
+  }
+
+  &:hover {
+    color: $white;
+    background-color: $primary;
+    transition: 
+      transform 0.1s ease-in,
+      box-shadow 0.1s ease-in;
+      transform: translate(0.2em, 0.2em);
+      box-shadow: 0.1em 0.1em $primary, 0.2em 0.2em $primary, 0.3em 0.3em $white;
+  }
+
+  &:active {
+    color: $white;
+    background-color: $primary-light;
+    transform: translate(0.3em, 0.3em);
+    box-shadow: 0.1em 0.1em $primary-light, 0.2em 0.2em $white;
+  }
+}
+
+.button-buy {
+  color: $white;
+  background-color: $secondary;
+  box-shadow: 0.1em 0.1em $secondary, 0.2em 0.2em $secondary;
+  border: 0.15em solid $white;
+  text-transform: uppercase;
+
+  &:link, &:visited, &:focus, &:active {
+    outline: none;
+  }
+
+  &:hover {
+    color: $white;
+    background-color: $secondary-light;
+    transition: 
+      transform 0.1s ease-in,
+      box-shadow 0.1s ease-in;
+      transform: translate(0.2em, 0.2em);
+      box-shadow: none;
+  }
+
+  &:active {
+    background-color: $secondary;
+    transform: translate(0.1em, 0.1em);
+    box-shadow: 0.1em 0.1em $secondary;
+  }
+}

@@ -1,0 +1,52 @@
+.shop-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+
+  @include breakpoint($tab_device) {
+
+  }
+}
+
+.item-list-container {
+  flex: 0 1 80%;
+  @include breakpoint($tab_device) {
+    flex: 0 1 75%;
+  }
+}
+
+.aside {
+  min-width: 6rem;
+  width: 20%;
+  flex: 0 1 auto;
+  padding: 0 0 3em 1em;
+
+  h3 {
+    @extend %bold-font;
+    margin-right: auto;
+    color: $primary-light;
+    text-transform:  none;
+    font-size: 0.9em;
+  }
+
+  p {
+    margin-top: .75em;
+    padding: 0.2em;
+
+    &:hover, &:focus {
+      cursor: pointer;
+      background-color: $background_white;
+    }
+  }
+
+  @include breakpoint($tab_device) {
+    width: 25%;
+  }
+}
+
+.aside__sticky {
+  position: sticky;
+  top: 90px;
+  padding-top: 3em;
+}
+

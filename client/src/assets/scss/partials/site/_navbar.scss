@@ -1,0 +1,159 @@
+.navbar {
+  position: -webkit-sticky;
+  position: sticky;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 1em;
+  top: 0;
+  z-index: 5500;
+  background-color: $primary;
+  height: $header_height;
+  
+  a {
+    text-decoration: none;
+  }
+
+  h1 {
+    color: $light_yellow;
+
+    &:hover {
+      transition: color 0.5s ease;
+      color: $white;
+    }
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  .inline-menu {
+    display: none;
+  }
+
+  @include breakpoint($tab_device) {
+    padding: 0 3em;
+  }
+
+  @include breakpoint($medium_device) {
+    padding: 0 6em;
+    justify-content: space-between;
+  }
+}
+
+.menu-toggle {
+  position: absolute;
+  top: -1.2em;
+  right: 0.1em;
+  border: 0;
+  background-color: $primary;
+  font-size: 3em;
+  width: 1em;
+  height: 1em;
+  line-height: 0.4;
+  text-indent: 5em;
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 5501;
+  margin-top: 1.5em;
+  
+  &::after {
+    color: $light_yellow;
+    position: absolute;
+    text-indent: 0;
+    top: 0.2em;
+    left: 0.2em;
+    display: block;
+    z-index: 5502;
+    content: "\2261";
+    :hover {
+      cursor: pointer;
+    }
+
+    @include breakpoint($big_device) {
+      display: none;
+    }
+  }
+}
+
+.menu {
+  margin-top: 0;
+  position: absolute;  
+  top: -600px;
+  left: 0px;
+  right: 0px;
+
+  @include breakpoint($big_device) {
+    position: static;
+    display: block;
+    top: 0px;
+    float: right;
+  }
+}
+
+.menu-dropdown {
+  display: block;
+  position: sticky;
+  margin: 0;
+  background-color: $primary;
+
+  @include breakpoint($big_device) {
+    display: block;
+    position: static;
+  }
+}
+
+.nav-menu {
+  margin: 0;
+  padding-left: 0;
+  border-top: 1px solid $light_yellow;
+  border-bottom: 1px solid $light_yellow;
+  list-style: none;
+  background-color: $primary;
+  color: #fff;
+  
+  > li {
+    padding: 1em;
+    
+    > a {
+      font-size: $phi_up;
+      color: $light_yellow;
+      text-decoration: none;
+
+      &:hover {
+        transition: color 0.5s ease;
+        color: $white;
+      }
+    }
+  }
+
+  > li + li {
+    margin-top: 0;
+    border-top: 1px solid $light_yellow;
+  }
+
+  @include breakpoint($big_device) {
+    display: flex;
+    border: 0;
+    padding: 0 1em;
+
+    > li {
+      flex: 1;
+    }
+
+    > li + li {
+      border: 0;
+    }
+
+    > li > a {
+      padding: 0.3em;
+      text-align: center;
+    }
+  }
+}
+
+.menu.is-open .menu-dropdown {
+  transform: translateY(690px);//600 + 90
+  transition: transform 0.4s cubic-bezier(.4,1.1,.85,1.1);
+}
+

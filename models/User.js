@@ -10,12 +10,13 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  password: {
+  permissions: {
     type: String,
     required: true
   },
-  avatar: {
-    type: String
+  password: {
+    type: String,
+    required: true
   },
   date: {
     type: Date,

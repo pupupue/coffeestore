@@ -11,9 +11,9 @@ const connectDB = async () => {
       useFindAndModify: false,
     });
 
-    console.log("mongodb connected");
+    console.log("DB connection succesfull");
   } catch (error) {
-    console.log("mongodb conn error");
+    console.log("DB connection error");
     process.exit(1);
   }
 };

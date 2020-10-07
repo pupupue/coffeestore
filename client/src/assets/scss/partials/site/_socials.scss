@@ -1,0 +1,48 @@
+.social {
+  padding: 1.5em 1em 0;
+  border-top: 2px solid $white;
+  margin-left: 0;
+  margin-right: 0;
+  overflow: hidden;
+
+  h2 {
+    color: $light_yellow;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  > ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  
+    li {
+      margin: 0 2em 0 0;
+    }
+
+    li:last-child {
+      display: none;
+      @include breakpoint($tab_device) {
+        display: block;
+        margin-left: auto;
+      }
+    }
+  }
+
+  @include breakpoint($large_mobile) {
+    margin-left: -1em;
+    margin-right: -1em;
+  }
+}
+
+.social--icon {
+  font-size: 2em;
+  width: 1em;
+  height: 1em; 
+  fill: $light_yellow;
+
+  &:hover, &:focus {
+    fill: $secondary-light;
+  }
+}

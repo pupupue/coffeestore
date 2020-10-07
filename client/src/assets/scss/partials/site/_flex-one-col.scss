@@ -1,0 +1,39 @@
+//always first wrapper
+//has header main and footer as kids
+//never give w or h 100vw
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+//always second wrapper
+//has articles, buttons, media, ect
+.flex-main {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  //think about flex direction
+  //flex item sizes ect+
+  margin: 0; //no gap from header-menu
+
+  > * + * {
+    margin-top: 0;
+  }
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
+//hero
+// .hero {
+//   padding: 2em 1em;
+//   text-align: center;
+//   background-image: url("/images/coffee-store-man.jpg");
+//   background-size: 100%;
+//   color: $light_yellow;
+//   text-shadow: 0.1em 0.1em 0.3em #000;
+// }

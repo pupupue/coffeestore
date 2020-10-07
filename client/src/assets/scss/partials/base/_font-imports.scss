@@ -1,0 +1,9 @@
+@import '../../modules/font-mixin';
+/**
+*   relative to main.css
+*/
+
+@include font-face($font, 'assets/fonts/Noto_Serif/NotoSerif-Regular');
+@include font-face($fontBold, 'assets/fonts/Noto_Serif/NotoSerif-Bold');
+// @include font-face($fontBoldItalic, '../fonts/Noto_Serif/NotoSerif-BoldItalic');
+@include font-face($fontItalic, 'assets/fonts/Noto_Serif/NotoSerif-Italic');

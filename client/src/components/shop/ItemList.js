@@ -7,9 +7,7 @@ function ItemList({ items }) {
     <div className="item-list-container">
       <div className="item-list">
         {items === null || items === undefined ? (
-          <div className="list-item">
-            <Loading />
-          </div>
+          <Loading />
         ) : ( 
           items.map((item, key) => 
             <ListItem

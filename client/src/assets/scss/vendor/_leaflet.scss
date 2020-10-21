@@ -28,7 +28,8 @@
 
 .location__List {
   overflow:auto;
-
+  display: flex;
+  
   * + * {
     margin-top: .75em;
   }

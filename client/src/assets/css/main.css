@@ -749,7 +749,8 @@ img {
       flex: 0 1 70%; } }
 
 .location__List {
-  overflow: auto; }
+  overflow: auto;
+  display: flex; }
   .location__List * + * {
     margin-top: .75em; }
   .location__List .button {

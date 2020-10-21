@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 const Slide = ({img, title, titleForeign, postUrl}) => {
   const [style] = useState({
@@ -9,11 +10,6 @@ const Slide = ({img, title, titleForeign, postUrl}) => {
     backgroundPosition: 'center'
   });
 
-  const onClick= e => {
-    e.preventDefault();
-    alert(postUrl);
-  };
-
   return (
     <div 
       className="intro__item intro__main"
@@ -22,11 +18,12 @@ const Slide = ({img, title, titleForeign, postUrl}) => {
       <div className="wrap">
         <h3>{titleForeign}</h3>
         <h4>{title}</h4>
-        <p
-          onClick={onClick}
+        <Link
+          to={`/article/${postUrl}`}
+          style={{marginTop: "1.5em"}}
         >
           READ MORE
-        </p>
+        </Link>
       </div>
     </div>
   )

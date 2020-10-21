@@ -49,9 +49,9 @@
     // position: relative;
     padding: 1.5em 1em;
 
-    > button {
+    > button, a {
       width: 12rem;
-
+      text-align: center;
       @include breakpoint($medium_device) {
         margin-top: auto;
       }
@@ -106,7 +106,7 @@
   text-align: right; 
 
   .article__content {
-    > button {
+    > button, a {
       margin-left: auto;
     }
   }

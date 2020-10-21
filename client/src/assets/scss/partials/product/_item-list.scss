@@ -13,6 +13,15 @@
   flex-direction: row;
 }
 
+.flex-main {
+  .item-list {
+    margin-top: 1.5em;
+    @include breakpoint($tab_device) {
+      margin-top: 3em;
+    }
+  }
+}
+
 .vertical-sidetext {
   position: absolute;
   right: 0;
@@ -79,5 +88,65 @@
 
   @include breakpoint($medium_device) {
     flex: 0 1 calc(33% - 1.5em - 1.5em);
+  }
+}
+
+.list-item__featured {
+  margin: 0 1em;
+  flex: 0 1 calc(27% - 1em - 1em);
+  padding-bottom: 3em;
+
+  a {
+    transition: transform .2s;
+    position: relative;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    text-decoration: none;
+
+    img {
+      margin-left: auto;
+      margin-right: auto;
+      object-fit: cover;
+      width: 70%;
+      height: 70%;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  h3 {
+    font-size: 1.2rem;
+  }
+  .item__details {
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+    margin-top: .75rem;
+
+    * + * {
+      margin-top: .75em;
+    }
+
+    h4 {
+      @extend %bold-font;
+      font-size: 1rem;
+      color: $primary;
+    }
+  }
+
+  @include breakpoint($tab_device) {
+    margin: 0 1.5em;
+    flex: 0 1 calc(27% - 1.5em - 1.5em);
+    h3 {
+      font-size: $phi_up;
+    }
+    .item__details {
+      h4 {
+        font-size: 1em;
+      }
+    }
+
   }
 }

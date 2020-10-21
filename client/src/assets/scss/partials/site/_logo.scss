@@ -1,0 +1,30 @@
+.logo__main {
+  font-size: 2em;
+  width: 1.5em;
+  height: 1.5em;
+  fill: $light_yellow;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover, &:focus {
+    transition: all 0.3s ease; 
+    fill: $secondary-light;
+    transform: scale(1.2);
+  }
+}
+
+.logo__secondary {
+  font-size: 2em;
+  width: 3em;
+  height: 3em;
+  fill: $secondary;
+  margin-right: 0;
+  transition: all 0.3s ease;
+  margin: 1.5em auto 0;
+
+  &:hover, &:focus {
+    transition: all 0.3s ease; 
+    fill: $secondary-dark;
+    transform: scale(1.2);
+  }
+}

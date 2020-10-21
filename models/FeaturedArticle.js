@@ -5,11 +5,7 @@ const FeaturedArticleSchema = new Schema({
   articleId: {
     type: Schema.Types.ObjectId,
     ref: 'article'
-  },
-  featuredImg: {
-    type: String,
-    required: true
   }
 });
 
-module.exports = mongoose.model('featuredarticle', FeaturedArticleSchema);
+module.exports = mongoose.model('featuredarticles', FeaturedArticleSchema);

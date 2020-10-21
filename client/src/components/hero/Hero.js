@@ -1,10 +1,11 @@
 import React from 'react'
 
 function Hero({
-  imgName
+  imgName, text
 }) {
 
   const imgUrl = {
+    backgroundColor: '#9d4d28',
     backgroundImage: "url(" + process.env.PUBLIC_URL + '/images/' + imgName + ")"
   };
 
@@ -14,7 +15,7 @@ function Hero({
       style={imgUrl}
     >
       <span>
-        Our Story
+        {text}
       </span>
     </div>
   )

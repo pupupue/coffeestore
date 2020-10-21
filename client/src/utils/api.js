@@ -3,7 +3,7 @@ import store from '../store';
 import { USER } from '../store/types';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: 'http://localhost:5000/api',
   headers: {
     'Content-Type': 'application/json'
   }
@@ -21,6 +21,10 @@ api.interceptors.response.use(
     if (err.response.data.msg === 'Token is not valid') {
       store.dispatch({ type: USER.LOGOUT });
     }
+    if (err.response.status === 401) {
+      //place your reentry code
+     }
+    // console.log(Promise.reject(err));
     return Promise.reject(err);
   }
 );

@@ -14,7 +14,6 @@ router.post(
   '/',
   [auth, [
       check('productId', 'Product is required').not().isEmpty(),
-      check('featuredImg', 'Featured image is required').not().isEmpty()
     ]
   ],
   async (req, res) => {
@@ -25,7 +24,6 @@ router.post(
 
     const {  
       productId,
-      featuredImg
     } = req.body;
 
     try {
@@ -34,16 +32,14 @@ router.post(
       if (!product) {
         return res.status(404).json({ msg: 'Product not found' })
       }
-
       //check if featured product exists
-      const ftproduct = await FeaturedProduct.findById(productId);
-      if (ftproduct) {
+      const ftproduct = await FeaturedProduct.find({ productId: productId });
+      if (ftproduct.length > 0) {
         return res.status(404).json({ msg: 'Product already featured' })
       }
 
       const newFeaturedProduct = new FeaturedProduct({
         productId,
-        featuredImg
       });
 
       const featuredProduct = await newFeaturedProduct.save();
@@ -66,14 +62,10 @@ router.get('/', [], async (req, res) => {
     const ftproductobject = await Promise.all(ftproducts.map(async (ftproduct) => {
       let product = await Product.findById(ftproduct.productId);
         if (product) {
-          let obj = {};
-          obj.product = product;
-          obj.featuredImg = ftproduct.featuredImg;
-          obj._id = ftproduct._id;
-          return obj;
+          return product;
         }
     }));
-    res.json(ftproductsobject);
+    res.json(ftproductobject);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

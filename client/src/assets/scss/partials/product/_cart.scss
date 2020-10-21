@@ -1,0 +1,153 @@
+.cart__heading {
+  padding: 1em $phi_down;
+  color: $secondary;
+
+  @include breakpoint($large_mobile) {
+      padding: 1em $phi_down * 3;
+  }
+
+  @include breakpoint($medium_device) {
+    padding: 1em $phi_down * 6;
+  }
+}
+
+.cart__info {
+  display: none !important;
+
+  @include breakpoint($large_mobile) {
+    display: flex !important;
+    .cart__info_first {
+      margin-left: 40%;
+    }
+
+  }
+}
+
+.cart__item {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 3em 1em;
+  border-top: 1px lighten($primary-light, 57%) solid;
+  border-bottom: 1px lighten($primary-light, 57%) solid;
+  user-select: none;
+  gap: .5rem;
+
+  * + * {
+    margin-top: 0;
+  }
+  .cart__delete {
+    flex: 0 0 3%;
+  }
+  img {
+    width: 25%;
+    flex: 0 0 33%;
+  }
+  .cart__item_titles {
+    flex: 0 0 50%;
+  }
+
+  .price {
+    font-size: 1.2em;
+  }
+
+  .counter {
+    margin-left: auto;
+  }
+
+  .origin {
+    display: none !important;
+  }
+
+  @include breakpoint($large_mobile) {
+    justify-content: space-evenly;
+    img {
+      width: 15%;
+    }
+    .cart__delete, img, .cart__item_titles {
+      flex: none;
+    }
+    .cart__item_titles {
+      margin-right: 0;
+    }
+    .counter {
+      margin-left: 0;
+    }
+  }
+
+  @include breakpoint($medium_device) {
+    .origin {
+      display: block !important;
+    }
+    .price {
+      font-size: 1em;
+    }
+  }
+}
+
+.cart__item + .cart__item {
+  border-top: none;
+  margin-top: 0;
+}
+
+.cart__item:nth-of-type(2n){
+  background-color: $background_white;
+}
+
+.cart__item_titles {
+  display: flex;
+  flex-direction: column;
+  align-self: normal;
+  justify-content: space-around;
+  font-size: 1em;
+  @include breakpoint($medium_device) {
+    font-size: 1.2em;
+  }
+}
+
+.cart__delete {
+  width: 1em;
+  height: 1em; 
+  fill: $primary-light;
+  stroke: $primary-light;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover, &:focus {
+    transition: all 0.2s ease;
+    fill: $primary;
+    stroke: $primary;
+    transform: scale(0.85) rotate(360deg);
+  }
+}
+
+.cart__checkout {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  margin: 0 1em 0 auto;
+
+  div {
+    display: flex;
+    padding: 1em 0;
+    border-bottom: 1px lighten($primary-light, 57%) solid;
+    justify-content: space-between;
+    span {
+      font-size: 1.3em;
+      font-weight: 900;
+    }
+  }
+
+  a {
+    margin-top: 1em;
+    align-self: flex-start;
+    margin-left: auto;
+  }
+  
+  * + * {
+    margin-top: 0;
+  }
+}

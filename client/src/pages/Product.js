@@ -1,48 +1,76 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getProduct, resetError } from '../store/actions/product';
 import AddToCart from '../components/shop/AddToCart';
-import Description from '../components/shop/Description';
-
+import HeadingSection from '../components/heading/HeadingSection';
+import FeaturedProducts from '../components/shop/FeaturedProducts';
+import Loading from '../components/loading/Loading';
 
 function Product({
   match
 }) {
+  const dispatch = useDispatch();
+  const [err, setErr] = useState();
 
-  const product = {
-    productId: 1,
-    imgName: 'coffee-bag.png',
-    productTitle: "Dark Roast Espresso",
-    productTitleForeign: "深色烤浓咖啡",
-    origin: "Columbia",
-    price: "$96.00",
-    type: "Ground",
-    description: "Diego Sanjero: Buenos Estate, Centroamericano, Natural 340g"
+  //scroll top
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [match.params.id])
+
+  //set Product
+  const { product, error } = useSelector(state => ({
+    product: state.product.product,
+    error: state.product.error,
+  }))
+
+  //get Product
+  useEffect(() => {
+    dispatch(getProduct(match.params.id))
+  }, [dispatch, match.params.id]);
+
+  //set error state
+  useEffect(() => {
+    setErr(error)
+    dispatch(resetError())
+  }, [dispatch, error])
+
+  const imgPath = process.env.PUBLIC_URL +'/images/';
+  const currency = "$";
+
+  if (err) {
+    console.log('redirect')
+    return <Redirect to="/404" />;
   }
-  const imgUrl = process.env.PUBLIC_URL +'/images/'+ product.imgName;
 
   return (
-    <div className="product__container">
-      {product === null ? (
-        <p>loading</p>
-      ) : (
-        <Fragment>
-          <a href={imgUrl}>
+    <Fragment>
+      <div className="product__container">
+        {product === null ? (
+          <Loading />
+        ) : (
+          <Fragment>
             <img
-              src={imgUrl}
+              src={imgPath + product.imgUrl}
               alt=""
             />
-          </a>
-          <div className="product__details">
-            <h2>{product.productTitle}</h2>
-            <h3>{product.productTitleForeign}</h3>
-            <p>{product.origin}</p>
-            <p>{product.type}</p>
-            <p className="bottom-light price">{product.price}</p>
-            <AddToCart id={product.productId}/>
-            <Description description={product.description}/>
-          </div>
-        </Fragment>
-      )}
-    </div>
+            <div className="product__details">
+              <h2>{product.titles['ENG']}</h2>
+              <p>{product.description}</p>
+              <h3>{product.titles['ZH']}</h3>
+              <ul>
+                <li>{product.origin}</li>
+                <li>{product.type}</li>
+              </ul>
+              <p className="price">{currency}{product.price}</p>
+              <AddToCart item={product}/>
+            </div>
+          </Fragment>
+        )}
+      </div>
+      <HeadingSection mainTxt="Featured Products" secondaryTxt="特色產品" />
+      <FeaturedProducts />
+    </Fragment>
   )
 }
 

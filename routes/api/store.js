@@ -54,7 +54,7 @@ router.post(
 // @access   Public
 router.get('/', [], async (req, res) => {
   try {
-    const stores = await Store.find();
+    const stores = await Store.find({});
     res.json(stores);
   } catch (err) {
     console.error(err.message);
@@ -121,11 +121,6 @@ router.put('/img/:id', [auth, checkObjectId('id')], async (req, res) => {
     if (!store) {
       return res.status(404).json({ msg: 'Store not found' });
     }
-
-    // Check user
-    // if (article.user.toString() !== req.user.id) {
-    //   return res.status(401).json({ msg: 'User not authorized' });
-    // }
 
     //update
     store = await Store.findOneAndUpdate(

@@ -4,24 +4,40 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-end;
   padding: 0 1em;
   top: 0;
   z-index: 5500;
   background-color: $primary;
   height: $header_height;
   
+  * + * {
+    margin-top: 0;
+  }
+
   a {
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-items: center;
   }
 
-  h1 {
-    color: $light_yellow;
+  .nav__title {
+    margin-right: auto;
 
-    &:hover {
-      transition: color 0.5s ease;
-      color: $white;
+    h1 {
+      color: $light_yellow;
+      transition: all 0.3s ease;
+      font-size: 2rem;
+      margin-left: 2rem;
+      &:hover {
+        color: $secondary-light;
+        transform: scale(1.075) translateX(0.15em);
+      }
     }
   }
+
+  
 
   button:hover {
     cursor: pointer;
@@ -37,7 +53,6 @@
 
   @include breakpoint($medium_device) {
     padding: 0 6em;
-    justify-content: space-between;
   }
 }
 
@@ -66,13 +81,16 @@
     display: block;
     z-index: 5502;
     content: "\2261";
-    :hover {
-      cursor: pointer;
-    }
-
+    
     @include breakpoint($big_device) {
       display: none;
     }
+  }
+
+  &:hover::after {
+    cursor: pointer;
+    transition: color 0.3s ease;
+    color: $secondary-light;
   }
 }
 
@@ -121,8 +139,8 @@
       text-decoration: none;
 
       &:hover {
-        transition: color 0.5s ease;
-        color: $white;
+        transition: color 0.3s ease;
+        color: $secondary-light;
       }
     }
   }
@@ -131,7 +149,16 @@
     margin-top: 0;
     border-top: 1px solid $light_yellow;
   }
-
+  @include breakpoint($tab_device) {
+    > li {
+      padding: 1em 3em;
+    }
+  }
+  @include breakpoint($medium_device) {
+    > li {
+      padding: 1em 6em;
+    }
+  }
   @include breakpoint($big_device) {
     display: flex;
     border: 0;
@@ -139,6 +166,7 @@
 
     > li {
       flex: 1;
+      padding: 1em;
     }
 
     > li + li {

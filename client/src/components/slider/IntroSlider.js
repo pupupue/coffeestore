@@ -1,11 +1,22 @@
-import React, { Fragment } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import Slider from "react-slick";
 
 import NextArrow from './NextArrow';
 import PrewArrow from './PrewArrow';
 import Slide from './Slide';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllIntro } from '../../store/actions/article';
 
 const IntroSlider = () => {
+  const dispatch = useDispatch()
+  //dispatch get all article action
+  useEffect(() => {
+    dispatch(getAllIntro())
+  }, [dispatch]);
+
+  const { introArticles } = useSelector(state => ({
+    introArticles: state.article.introarticles
+  }));
 
   const settings = {
     dots: false,
@@ -19,40 +30,38 @@ const IntroSlider = () => {
     prevArrow: <PrewArrow />
   };
 
-  const slideValues = [
+  const defaultSlide = [
     {
       img: "coffee-and-husouint.jpg",
       title:"Focus on the wonderful experience found in every cup of coffee",
       titleForeign:"專注於每一杯咖啡的美好體驗",
-      postUrl:"/article/1"
-    },
-    {
-      img: "coffee-store-man.jpg",
-      title:"Buggatta cafe, 20 years in service and counting!",
-      titleForeign:"Buggatta咖啡厅，已经有20年的服务历史了!",
-      postUrl:"/article/2"
-    },
-    {
-      img: "coffee-cettle.jpg",
-      title:"All orders ship for FREE, same or next business day",
-      titleForeign:"所有订单均在同一工作日或下一个工作日免费送货",
-      postUrl:"/article/3"
-    },
+      postUrl:"/"
+    }
   ];
-
   return (
     <Fragment>
       <Slider {...settings}>
         {
-          slideValues.length && slideValues.map((slide, key) => 
-            <Slide
-              key={key}
-              img={slide.img} 
-              titleForeign={slide.titleForeign} 
-              title={slide.title} 
-              postUrl={slide.postUrl}
-            />
-          )
+          introArticles === null || introArticles === undefined ? (
+            defaultSlide.map((slide, key) => 
+              <Slide
+                key={key}
+                img={slide.img}
+                titleForeign={slide.titleForeign} 
+                title={slide.title} 
+                postUrl={slide.postUrl}
+              />
+            )
+          ) : ( 
+            introArticles.map((slide, key) => 
+              <Slide
+                key={key}
+                img={slide.ftImg} 
+                titleForeign={slide.titles["ZH"]} 
+                title={slide.titles["ENG"]} 
+                postUrl={slide.articleId}
+              />
+          ))
         }
       </Slider>
     </Fragment>

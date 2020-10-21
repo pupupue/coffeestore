@@ -7,9 +7,9 @@
 // "\2192" outputs ascii character "→"
 // "\2022" outputs ascii character "•"
 
-$slick-font-path: "./assets/fonts/slickfonts/" !default;
+$slick-font-path: "../fonts/slickfonts/" !default;
 $slick-font-family: "slick" !default;
-$slick-loader-path: "./" !default;
+$slick-loader-path: "../" !default;
 $slick-arrow-color: white !default;
 $slick-dot-color: black !default;
 $slick-dot-color-active: $slick-dot-color !default;
@@ -39,13 +39,13 @@ $slick-opacity-not-active: 0.25 !default;
     }
 }
 
-/* Slider */
+// /* Slider */
 
-.slick-list {
-    .slick-loading & {
-        background: #fff slick-image-url("") center center no-repeat;
-    }
-}
+// .slick-list {
+//     .slick-loading & {
+//         background: #fff slick-image-url("") center center no-repeat;
+//     }
+// }
 
 /* Icons */
 @if $slick-font-family == "slick" {
@@ -101,7 +101,7 @@ $slick-opacity-not-active: 0.25 !default;
 
 .slick-prev {
   // top: 50%;
-  background-image: url('./assets/img/left-arrow.svg');
+  background-image: url('../img/left-arrow.svg');
   left: 12px;
   visibility: hidden;
 
@@ -130,7 +130,7 @@ $slick-opacity-not-active: 0.25 !default;
 .slick-next {
     margin-top: 0;
     // top: 50%;
-    background-image: url('./assets/img/right-arrow.svg');
+    background-image: url('../img/right-arrow.svg');
     right: 12px;
     visibility: hidden;
   

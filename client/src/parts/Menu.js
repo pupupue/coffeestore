@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 function Menu({className}) {
   return (
     <ul className={className}>
-      <li><a href="/about">About</a></li>
-      <li><a href="/shop">Shop</a></li>
-      <li><a href="/menu">Menu</a></li>
-      <li><a href="/locations">Cafés</a></li>
+      <li><Link to="/about">About</Link></li>
+      <li><Link to="/shop">Shop</Link></li>
+      <li><Link to="/menu">Menu</Link></li>
+      <li><Link to="/locations">Cafés</Link></li>
     </ul>
   )
 }

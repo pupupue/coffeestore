@@ -16,6 +16,7 @@ router.post(
       check('type', 'type is required').not().isEmpty(),
       check('price', 'price is required').not().isEmpty(),
       check('imgUrl', 'Image is required').not().isEmpty(),
+      check('stock', 'Stock is required').not().isEmpty(),
       check('description', 'description is required').not().isEmpty(),
       check('titles', 'titles is required').not().isEmpty(),
     ]
@@ -33,6 +34,7 @@ router.post(
       imgUrl,
       description,
       titles,
+      stock,
     } = req.body;
 
     try {
@@ -44,6 +46,7 @@ router.post(
         imgUrl,
         description,
         titles,
+        stock,
       });
 
       const product = await newProduct.save();
@@ -57,11 +60,25 @@ router.post(
 );
 
 // @route    GET api/product
-// @desc     Get all products
+// @desc     Get products
 // @access   Public
 router.get('/', [], async (req, res) => {
   try {
     const products = await Product.find().sort({ date: -1 });
+    res.json(products);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route    GET api/product/count/:amount
+// @desc     Get products
+// @access   Public
+router.get('/count/:amount', [], async (req, res) => {
+  amount = parseInt(req.params.amount);
+  try {
+    const products = await Product.find().sort({ date: -1 }).limit(amount);
     res.json(products);
   } catch (err) {
     console.error(err.message);
@@ -115,12 +132,11 @@ router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
 
 
 // @route    PUT api/product/:id
-// @desc     update an product
+// @desc     update a product
 // @access   Private
-router.put('/:id', [auth, checkObjectId('id')], async (req, res) => {
+router.put('/:id', [ checkObjectId('id')], async (req, res) => {
   
   const productFields = {};
-
   const {
     origin,
     type,
@@ -128,6 +144,7 @@ router.put('/:id', [auth, checkObjectId('id')], async (req, res) => {
     imgUrl,
     description,
     titles,
+    stock,
   } = req.body;
 
   if (origin) productFields.origin = origin;
@@ -136,6 +153,7 @@ router.put('/:id', [auth, checkObjectId('id')], async (req, res) => {
   if (imgUrl) productFields.imgUrl = imgUrl;
   if (description) productFields.description = description;
   if (titles) productFields.titles = titles;
+  if (stock) productFields.stock = stock;
 
   try {
     let product = await Product.findById(req.params.id);
@@ -164,6 +182,38 @@ router.put('/:id', [auth, checkObjectId('id')], async (req, res) => {
   }
 });
 
+
+// @route    PUT api/product/sell/:id
+// @desc     sell a product
+// @access   Public
+router.put('/sell/:id', [ checkObjectId('id')], async (req, res) => {
+  
+  const productFields = {};
+  const {
+    quantity,
+  } = req.body;
+  try {
+    let product = await Product.findById(req.params.id);
+
+    if (!product) {
+      return res.status(404).json({ msg: 'Product not found' });
+    }
+    if (quantity) productFields.stock = product.stock - quantity;
+    console.log(quantity)
+
+    //update
+    product = await Product.findOneAndUpdate(
+      { _id: req.params.id }, //filter
+      { $set: productFields }, //update
+      { new: true, upsert: true } //upsert new
+    );
+    res.json(product);
+
+  } catch (err) {
+    console.error(err.message); 
+    res.status(500).send('Server Error');
+  }
+});
 
 
 module.exports = router;

@@ -1,0 +1,34 @@
+.shopping-cart-icon {
+  font-size: 2em;
+  width: 1em;
+  height: 1em; 
+  fill: $light_yellow;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover, &:focus {
+    transition: all 0.3s ease; 
+    fill: $secondary-light;
+    transform: scale(1.2);
+  }
+}
+
+.shopping-cart-link {
+  margin-right: 3em;
+
+  @include breakpoint($tab_device) {
+    margin-right: 1.2em;
+  }
+
+  @include breakpoint($medium_device) {
+    margin-right: 0;
+  }
+}
+
+.cart-full {
+  animation: pulse 0.5s 2;
+  animation-timing-function: linear;
+  svg{
+    fill: $secondary-light;
+  }
+}

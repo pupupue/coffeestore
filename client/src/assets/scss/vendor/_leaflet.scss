@@ -1,15 +1,11 @@
 .map__container {
   width: 100%;
-  min-height: 80vh;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   padding: 0 1em 3em;
 
-  * + * {
-    margin-top: 0;
-  }
-
-  @include breakpoint($large_mobile) {
+  @include breakpoint($medium_device) {
     flex-direction: row-reverse;
     height: 90vh;
   }
@@ -17,13 +13,13 @@
 
 .leaflet-container {
   //override base
-  min-height: 80vh;
+  min-height: 50vh;
 
   * + * {
     margin-top: 0;
   }
 
-  @include breakpoint($large_mobile) {
+  @include breakpoint($medium_device) {
     margin: 0 1em;
     min-height: 10vh;
     flex: 0 1 70%;
@@ -41,7 +37,7 @@
     font-size: 0.75em;
   }
 
-  @include breakpoint($large_mobile) {
+  @include breakpoint($medium_device) {
     flex: 0 1 30%;
     padding: 1em;
   }

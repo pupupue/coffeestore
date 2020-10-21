@@ -1,10 +1,15 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import Hero from '../components/hero/Hero';
 import HeroText from '../components/hero/HeroText';
 import HeadingSection from '../components/heading/HeadingSection';
+import LogoSecondary from '../components/logo/LogoSecondary';
 
 
 function About() {
+  //scroll top
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const aboutustext = [
     {
       paragraph: "Our mission at Bulgatta coffe is ‘Bringing Coffee Love to your Community’."
@@ -36,9 +41,15 @@ function About() {
     <Fragment>
       <Hero 
         imgName="coffee-cettle.jpg"
+        text="Our Story"
       />
+      <LogoSecondary />
       <HeroText 
         text={aboutustext}
+      />
+      <Hero 
+        imgName="barista-male.jpg"
+        text="Our Stores"
       />
       <HeadingSection mainTxt="Our Coffee" secondaryTxt="我们的咖啡" />
       <HeroText 

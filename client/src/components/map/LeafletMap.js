@@ -2,6 +2,8 @@ import React, { useRef, useEffect, Fragment } from 'react'
 import L from  'leaflet';
 import { Map, TileLayer, ZoomControl, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllStores } from '../../store/actions/store';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -15,6 +17,10 @@ L.Icon.Default.mergeOptions({
 
 function LeafletMap({ coordinates }) {
   const mapRef = useRef();
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getAllStores())
+  }, [dispatch]);
 
   useEffect(() => {
     const { current = {} } = mapRef;
@@ -23,39 +29,10 @@ function LeafletMap({ coordinates }) {
       duration: 3
     })
   }, [mapRef, coordinates])
-  
-  //hook get locations
-  const locationsArray = [
-    {
-      name: "Xing Hua Bulgatta",
-      address: "Xing Hua Centre, Hong Kong",
-      latlan: [22.3140, 114.1687]
-    },
-    {
-      name: "Park Ivy Bulgatta",
-      address: "Fuk Tsun St, Tai Kok Tsui,Hong Kong",
-      latlan: [22.3213, 114.1639]
-    },
-    {
-      name: "Hope Sea Bulgatta",
-      address: "Hope Sea Industrial Centre, 1-9 Lam Lee St, Hong Kong",
-      latlan: [22.3242, 114.2099]
-    },
-    {
-      name: "Kwong Wah Bulgatta",
-      address: "Kwong Wah Centre, 34-46 Fau Tsoi St, Yuen Long",
-      latlan: [22.4439, 114.0300]
-    },
-  ];
 
-  const MyMarkersList = () => {
-    const items = locationsArray.map(( location, key ) => (
-      <Marker key={key} position={location.latlan}>
-        <Popup>{location.address}</Popup>
-      </Marker>
-    ))
-    return <Fragment>{items}</Fragment>
-  }
+  const { locations } = useSelector(state => ({
+    locations: state.store.stores
+  }));
 
   return (
     <Fragment>
@@ -65,7 +42,15 @@ function LeafletMap({ coordinates }) {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
         <ZoomControl position="bottomright"/>
-        <MyMarkersList />
+        {locations === null || locations === undefined ? (
+          null
+        ) : ( 
+          locations.map((location, key) => 
+            <Marker key={key} position={location.latlan}>
+              <Popup>{location.address}</Popup>
+            </Marker>
+          )
+        )}
       </Map>
 
     </Fragment>
@@ -73,3 +58,4 @@ function LeafletMap({ coordinates }) {
 }
 
 export default LeafletMap
+

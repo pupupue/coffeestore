@@ -1,27 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Menu from './Menu';
-
 
 const Footer = () => {
 
-  const style = { enableBackground: "new 0 0 512 512" }
+  const style = { enableBackground: "new 0 0 512 512" };
 
   return (
     <div className="footer">
-      <h1>Footer</h1>
+      <h1>Bulgatta</h1>
 
       <div className="footer-row">
         
         <Menu className="footer-nav footer__compact" />
 
         <ul className="footer-nav footer__compact">
-          <li><a href="/">Shop</a></li>
-          <li><a href="/">coffee</a></li>
-          <li><a href="/">tea</a></li>
-          <li><a href="/">cold brew</a></li>
-          <li><a href="/">subscriptions</a></li>
-          <li><a href="/">goods</a></li>
-          <li><a href="/">supplies</a></li>
+          <li><Link to="/shop">Shop</Link></li>
+          <li><Link to="/shop">coffee</Link></li>
+          <li><Link to="/shop">tea</Link></li>
+          <li><Link to="/about">cold brew</Link></li>
+          <li><Link to="/shop">subscriptions</Link></li>
+          <li><Link to="/shop">goods</Link></li>
+          <li><Link to="/shop">supplies</Link></li>
         </ul>
 
         {/* contact us */}
@@ -34,7 +34,6 @@ const Footer = () => {
         </ul>
       </div>
 
-{/* add socials */}
       <div className="social">
           <ul>
 
@@ -112,7 +111,6 @@ const Footer = () => {
 
           </ul>
         </div>
-
       <div className="copyright">
         <span>
           © 2020 Coffee Company. All rights reserved.

@@ -1,0 +1,41 @@
+.loader.color-pulse-ball {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: $text_main-light;
+  animation:
+    colorripple calc(3 * 2s) infinite ease-in-out,
+    ripple 2s infinite ease;
+}
+
+.loader {
+  display: inline-block;
+  background: transparent;
+  margin: auto;
+}
+
+.loader, .loader:before, .loader:after {
+  box-sizing: border-box;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+@keyframes colorripple {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(359.9deg);
+  }
+}
+
+@keyframes ripple {
+  0%, 1% {
+    opacity: 1;
+    transform: scale(0.1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}

@@ -1,7 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-function Article({
-  title, tag, content, imgName, articleUrl
+function ArticleItem({
+  title, tags, content, imgName, articleUrl
 }) {
 
   const imgUrl = {
@@ -12,18 +13,18 @@ function Article({
     <section className="article">
       <div className="img" style={imgUrl}/>
       <div className="article__content">
-        <h3>{tag}</h3>
+        <h3>{tags.map(tag => tag + " ")}</h3>
         <h2>{title}</h2>
         <p>{content}</p>
-        <button 
+        <Link 
           className="button button-dark-inverse clearfix"
-          // onClick={}//articleUrl
+          to={`/article/${articleUrl}`}
         >
-          Click Me
-        </button>
+          Read More
+        </Link>
       </div>
     </section>
   )
 }
 
-export default Article
+export default ArticleItem

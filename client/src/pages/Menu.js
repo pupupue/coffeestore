@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import LogoSecondary from '../components/logo/LogoSecondary';
 
 function Menu() {
+  //scroll top
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
-  
   return (
     <div className="food-menu__container">
       <div className="food-menu">
+        <LogoSecondary />
         <h1>MENU</h1>
         <span>Salads</span>
         <p>Quinoa, vegetable salad with roasted seeds, herb pesto and salad leaves (V)<br/>$6.70</p>

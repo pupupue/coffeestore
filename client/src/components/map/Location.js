@@ -8,7 +8,9 @@ function Location({ location, setCoordinates }) {
       <h2>{name}</h2>
       <p>{address}</p>
       <button
-        onClick={() => setCoordinates(latlan)}
+        onClick={() => {
+          setCoordinates(latlan)
+        }}
         className="button button-buy"
       >Go To
       </button>

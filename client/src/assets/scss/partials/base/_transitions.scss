@@ -28,11 +28,6 @@
   }
 }
 
-
-
-
-
-
 @keyframes shake {
   0%,
   100% {
@@ -54,5 +49,17 @@
   }
   90% {
   transform: translateX(-0.3em);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(.9);
   }
 }

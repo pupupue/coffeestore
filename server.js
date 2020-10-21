@@ -1,9 +1,11 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const path = require('path');
+const cors = require('cors')
 
 const app = express();
 
+app.use(cors())
 // Connect Database
 connectDB();
 
@@ -18,6 +20,7 @@ app.use('/api/product', require('./routes/api/product'));
 app.use('/api/store', require('./routes/api/store'));
 app.use('/api/ftproduct', require('./routes/api/featuredProduct'));
 app.use('/api/ftarticle', require('./routes/api/featuredArticle'));
+app.use('/api/create-payment-intent', require('./routes/api/stripe'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {

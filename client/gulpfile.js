@@ -12,7 +12,7 @@ function style() {
     gulp.src(dir + '/scss/main.scss')
     .pipe(sass())
     .on("error", sass.logError)
-    .pipe(gulp.dest('src/'))
+    .pipe(gulp.dest('src/assets/css/'))
   );
 }
 exports.style = style
@@ -28,7 +28,7 @@ function postcss(){
   const postcss    = require('gulp-postcss')
   const sourcemaps = require('gulp-sourcemaps')
 
-  return gulp.src(dir + '/css/main.min.css')
+  return gulp.src(dir + '/css/main-min.css')
     .pipe( sourcemaps.init() )
     .pipe( postcss([ require('precss'), require('autoprefixer') ]) )
     .pipe( sourcemaps.write('.') )

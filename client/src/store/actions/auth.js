@@ -15,7 +15,7 @@ const {
 // Load User
 export const loadUser = () => async dispatch => {
   try {
-    const res = await api.get('/auth');
+    const res = await api.get('/auth')
 
     dispatch({
       type: LOADED,
@@ -23,7 +23,8 @@ export const loadUser = () => async dispatch => {
     });
   } catch (err) {
     dispatch({
-      type: AUTH_ERROR
+      type: AUTH_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
 };
@@ -46,17 +47,18 @@ export const register = formData => async dispatch => {
     }
 
     dispatch({
-      type: REGISTER_FAIL
+      type: REGISTER_FAIL,
+      payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
 };
 
 // Login User
-export const login = (email, password) => async dispatch => {
-  const body = { email, password };
+export const login = body => async dispatch => {
+  const { email, password } = body;
 
   try {
-    const res = await api.post('/auth', body);
+    const res = await api.post('/auth', { email, password });
 
     dispatch({
       type: LOGIN_SUCCESS,
@@ -72,7 +74,8 @@ export const login = (email, password) => async dispatch => {
     }
 
     dispatch({
-      type: LOGIN_FAIL
+      type: LOGIN_FAIL,
+      payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
 };

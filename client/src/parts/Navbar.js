@@ -1,9 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import Menu from './Menu';
+import ShoppingCart from './ShoppingCart';
+import Logo from '../components/logo/Logo';
 import useToggle from '../components/hooks/useToggle';
 import useWindowSize from '../components/hooks/useWindowSize';
 import useClickOutside from '../components/hooks/useClickOutside';
+import { createCart } from  '../store/actions/cart';
 
 const setClass = (toggleClass, width, setShowClass) => {
   if(width >= 1200) {
@@ -17,7 +21,7 @@ const setClass = (toggleClass, width, setShowClass) => {
 }
 
 const Navbar = () => {
-
+  const dispatch = useDispatch();
   const [showClass, setShowClass] = useState(false);
   const [toggleClass, setToggleClass] = useToggle(false);
   const size = useWindowSize();
@@ -28,24 +32,26 @@ const Navbar = () => {
     setClass(toggleClass, width, setShowClass)
   }, [toggleClass, width, setShowClass]);
 
+  useEffect(() => {
+    dispatch(createCart());
+  }, [dispatch]);
+
   useClickOutside(ref, toggleClass && setToggleClass);
 
   return (
     <div ref={ref} className='navbar'>
-      
-      <Link to="/">
+      <Logo />
+      <NavLink to="/" className="nav__title">
         <h1>Bulgatta</h1>
-      </Link>
-       
-
+      </NavLink>
       <nav className={showClass ? 'menu is-open' : 'menu'} id="main-menu">
         <div className="menu-dropdown">
           <Menu className="nav-menu" />
         </div>
       </nav>
+      <ShoppingCart />
 
-      {
-        width < 1200 && <button 
+      {width < 1200 && <button 
         className="menu-toggle"
         id="toggle-menu"
         onClick={setToggleClass}
@@ -53,8 +59,6 @@ const Navbar = () => {
         toggle menu
       </button>
       }
-      
-
     </div>
   );
 };

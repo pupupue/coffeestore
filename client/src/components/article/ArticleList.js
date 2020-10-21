@@ -1,22 +1,26 @@
 import React from 'react'
-import Article from './Article';
+import ArticleItem from './ArticleItem';
+import Loading from '../loading/Loading';
 
-function ArticleList({article_object}) {
-
-  const articles = article_object.map((article, key) => 
-    <Article
-      key={key}
-      title={article.title} 
-      tag={article.tag} 
-      content={article.content} 
-      imgName={article.imgName}
-      articleUrl={article.articleUrl}
-    />
-  );
-
+function ArticleList({ articles }) {
   return (
     <div className="articles">  
-      {articles}
+      {articles === null || articles === undefined ? (
+        <section className="article">
+          <Loading />
+        </section>
+      ) : (
+        articles.map((article, key) => 
+          <ArticleItem
+            key={key}
+            title={article.title} 
+            tags={article.tags} 
+            content={article.heading} 
+            imgName={article.imgUrl}
+            articleUrl={article._id}
+          />
+        )
+      )}
     </div>
   )
 }

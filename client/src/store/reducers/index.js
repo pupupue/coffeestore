@@ -1,14 +1,18 @@
 import { combineReducers } from 'redux';
-import alert from './alert';
 import auth from './auth';
-import profile from './profile';
-import post from './post';
+import cart from './cart';
+import blink from './blink';
+import alert from './alert';
+import store from './store';
+import article from './article';
 import product from './product';
 
 export default combineReducers({
-  alert,
   auth,
-  profile,
-  post,
+  cart,
+  alert,
+  blink,
+  store,
+  article,
   product
 });

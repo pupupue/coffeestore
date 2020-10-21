@@ -37,12 +37,5 @@
 }
 
 .social--icon {
-  font-size: 2em;
-  width: 1em;
-  height: 1em; 
-  fill: $light_yellow;
-
-  &:hover, &:focus {
-    fill: $secondary-light;
-  }
+  @extend .logo__main;
 }

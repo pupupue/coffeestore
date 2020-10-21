@@ -1,9 +1,11 @@
 .price {
-  font-size: $phi_up !important;
+  font-size: $phi_up;
   color: $secondary !important;
+  font-weight: 900 !important;
 }
 
 .product__container {
+  background: $white;
   display: flex;
   flex-direction: column;
   padding: 1.5em 1em;
@@ -14,14 +16,44 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    align-self: center;
+    justify-self: center;
   }
   
   img {
-    margin-left: auto;
-    margin-right: auto;
+    background: radial-gradient(circle at center, lighten($primary-light, 59%) 50%, transparent 46%);
+    background-position: center center;
+    background-size: 100%;
+    margin: 0 auto 3em;
     object-fit: cover;
-    width: 80%;
-    height: 80%;
+    width: 70%;
+    height: 70%;
+    transform: rotate(1deg);
+    transition: all 0.2s ease-out;
+
+    &:hover {
+      transition: all 0.4s cubic-bezier(0,.36,0,1);
+      background-size: 140%;
+      transform: rotate(-6deg) scale(1.05);
+    }
+  }
+  
+  .price {
+    margin-left: 3rem;
+  }
+
+  @include breakpoint($medium_device) {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 3em 3em;
+
+    img {
+      flex: 30%;
+    }
+  }
+
+  @include breakpoint($big_device) {
+    padding: 3em 4em;
   }
 }
 
@@ -30,23 +62,105 @@
   width: 100%;
 
   * + * {
-    margin-top: 0;
+    margin-top: 1.5rem;
   }
  
   h2 {
-    font-size: $phi_up;
-    margin-bottom: .5em;
+    font-size: 2.5em;
+    font-weight: 900;
+    color: $secondary;
   }
 
   h3 {
-    font-size: 0.9em;
+    font-size: $phi_up;
+    color: $secondary;
+
   }
   
-  p {
-    font-size: 0.9em;
+  .price {
+    font-size: $phi_up;
   }
 
-  .button {
-    margin: 1em 0;
+  ul {
+    padding: 1.5rem 3rem;
+    border-top: 0.3em $secondary solid;
+    border-bottom: 0.3em $secondary solid;
+    margin: 1.5em 0;
+    * + * {
+      margin-top: .5rem;
+    }
+    li {
+      font-size: 1.5rem;
+
+      &:before {
+        content: "\2022";
+        font-size: 1.4em;
+        color: $secondary;
+        vertical-align: middle;
+        font-weight: 900;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+      }
+    }
   }
+
+  p {
+    font-size: 1.2em;
+  }
+
+  @include breakpoint($medium_device) {
+    margin-top: 0;
+    flex: 50%;
+  }
+}
+
+.add-to-cart {
+  margin: 1em 0 1em 3rem;
+  font-weight: 900;
+
+  * + * {
+    margin-top: 0;
+    margin-left: .75rem;
+  }
+  user-select: none;
+}
+
+.counter {
+  display: inline-block;
+  border: 2px $primary solid;
+  padding: .2em .75em;
+  border-radius: 30px;
+  user-select: none;
+  white-space: nowrap;
+  
+  * {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 900;
+  }
+
+  * + * {
+    margin-top: 0;
+    margin-left: .75rem;
+  }
+}
+
+.counter__up, .counter__down {
+  font-size: 1.5em;
+  transition: all 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: $secondary;
+  }
+}
+
+.counter__down:hover { 
+  transform: scale(1.6, 1);
+}
+
+.counter__up:hover { 
+  transform: scale(1.3);
 }

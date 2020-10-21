@@ -19,4 +19,4 @@ const StoreSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('store', StoreSchema);
+module.exports = mongoose.model('stores', StoreSchema);

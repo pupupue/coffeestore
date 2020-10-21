@@ -4,8 +4,8 @@ function HeroText({
   text
 }) {
 
-  const paragraphs = text.map((t) =>
-    <p>{t.paragraph}</p>
+  const paragraphs = text.map((t, key) =>
+    <p key={key}>{t.paragraph}</p>
   )
 
   return (

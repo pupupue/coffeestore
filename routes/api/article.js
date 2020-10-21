@@ -129,7 +129,7 @@ router.put('/:id', [auth, checkObjectId('id')], async (req, res) => {
     title,
     heading,
     tags,
-    imgUrl
+    imgUrl  
   } = req.body;
 
   if (text) articleFields.text = text;

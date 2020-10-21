@@ -46,6 +46,7 @@
   box-shadow: 0.1em 0.1em $primary, 0.2em 0.2em $primary, 0.3em 0.3em $primary, 0.4em 0.4em $primary, 0.5em 0.5em $white;
   border: 0.15em solid $white;
   text-transform: uppercase;
+  transition: all 0.1s ease-in;
 
   &:link, &:visited, &:focus, &:active {
     outline: none;
@@ -75,16 +76,17 @@
   box-shadow: 0.1em 0.1em $secondary, 0.2em 0.2em $secondary;
   border: 0.15em solid $white;
   text-transform: uppercase;
+  transition: all 0.1s ease-out;
 
   &:link, &:visited, &:focus, &:active {
     outline: none;
   }
 
   &:hover {
-    color: $white;
+    color: $primary;
     background-color: $secondary-light;
     transition: 
-      transform 0.1s ease-in,
+      transform all 0.1s ease-in,
       box-shadow 0.1s ease-in;
       transform: translate(0.2em, 0.2em);
       box-shadow: none;

@@ -16,9 +16,7 @@ function FeaturedProducts() {
   return (
     <div className="item-list">
       {!ftproducts ? (
-        <div className="list-item__featured">
-          <Loading />
-        </div>
+        <Loading />
         ) : ( 
           ftproducts.map((product, key) => 
             <FeaturedProduct

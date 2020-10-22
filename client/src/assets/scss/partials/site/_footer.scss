@@ -3,13 +3,17 @@
   flex-direction: column;
   justify-content: space-between;
   margin-top: 0;
-  padding: 4.5em 1em 1.5em;
+  padding: 4.5em 1em 1em;
   background-color: $footer;
-  min-height: 100vh;
+  min-height: 70vh;
 
   h1 {
     text-align: center;
     color: $light_yellow;
+  }
+
+  * + * {
+    margin-top: 1rem;
   }
 
   > .flex-row {
@@ -28,6 +32,7 @@
 }
 
 .footer-row {
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -39,7 +44,7 @@
 
 .footer__compact {
   li + li {
-    margin-top: 0.5em !important;
+    margin-top: 0.25em !important;
   }
 }
 
@@ -58,9 +63,6 @@
     }
   }
 
-  li + li {
-    margin-top: 1.5rem;
-  }
 
   li:nth-child(1) {
     font-size: 1.1em;
@@ -87,6 +89,6 @@
 .copyright {
   color: darken($color: $copyright, $amount: 10%);
   font-size: 0.75em;
-  margin-top: 6em;
+  margin-top: 1em;
   text-align: center;
 }

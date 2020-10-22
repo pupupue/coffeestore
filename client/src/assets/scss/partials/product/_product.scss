@@ -60,6 +60,7 @@
 .product__details {
   color: $primary-light;
   width: 100%;
+  min-width: 365px;
 
   * + * {
     margin-top: 1.5rem;

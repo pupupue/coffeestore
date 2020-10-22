@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import Menu from './Menu';
@@ -9,52 +9,49 @@ import useWindowSize from '../components/hooks/useWindowSize';
 import useClickOutside from '../components/hooks/useClickOutside';
 import { createCart } from  '../store/actions/cart';
 
-const setClass = (toggleClass, width, setShowClass) => {
-  if(width >= 1200) {
-    return setShowClass(false);
-  } else if (toggleClass) {
-    return setShowClass(true);
-  } else if (!toggleClass){
-    return setShowClass(false);
-  }
-  return setShowClass(false);
-}
-
 const Navbar = () => {
   const dispatch = useDispatch();
-  const [showClass, setShowClass] = useState(false);
   const [toggleClass, setToggleClass] = useToggle(false);
   const size = useWindowSize();
   const width = size.width;
-  const ref = useRef(null);
-
-  useEffect(() => {
-    setClass(toggleClass, width, setShowClass)
-  }, [toggleClass, width, setShowClass]);
+  const refMenu = useRef(null);
+  const refButton = useRef(null);
 
   useEffect(() => {
     dispatch(createCart());
   }, [dispatch]);
 
-  useClickOutside(ref, toggleClass && setToggleClass);
+  useEffect(() => {
+    //fixes resize before class re-trigger 
+    if(width >= 1200 && toggleClass === true) {
+      setToggleClass()
+    }
+  }, [width, toggleClass, setToggleClass]);
+
+  useClickOutside(refMenu, refButton, toggleClass, setToggleClass);
 
   return (
-    <div ref={ref} className='navbar'>
+    <div className='navbar'>
       <Logo />
       <NavLink to="/" className="nav__title">
         <h1>Bulgatta</h1>
       </NavLink>
-      <nav className={showClass ? 'menu is-open' : 'menu'} id="main-menu">
+      <nav 
+        ref={refMenu}
+        className={toggleClass ? 'menu is-open' : 'menu'} id="main-menu"
+        onClick={(width < 1200) ? setToggleClass : null}
+      >
         <div className="menu-dropdown">
           <Menu className="nav-menu" />
         </div>
       </nav>
       <ShoppingCart />
-
-      {width < 1200 && <button 
+      <div className="nav__background"></div>
+      {width < 1200 && <button
         className="menu-toggle"
         id="toggle-menu"
         onClick={setToggleClass}
+        ref={refButton}
       >
         toggle menu
       </button>

@@ -45,10 +45,6 @@ body {
 
 body * + * {
   margin: 1.5rem 0 0;
-
-  @include breakpoint($tab_device) {
-    margin: 3rem 0 0;
-  }
 }
 
 #root {

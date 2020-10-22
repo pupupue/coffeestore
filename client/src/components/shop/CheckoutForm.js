@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from "react";
-import api from '../../utils/api';
-import {
-  CardElement,
-  useStripe,
-  useElements
-} from "@stripe/react-stripe-js";
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from "react-router-dom";
+import api from '../../utils/api';
+import validateEmail from '../../utils/formValidators';
+import {
+  useStripe,
+  useElements,
+  CardElement,
+} from "@stripe/react-stripe-js";
 import { setCartSold } from '../../store/actions/cart';
 
 export default function CheckoutForm() {
-  const [succeeded, setSucceeded] = useState(false);
-  const [redirect, setRedirect] = useState(false);
+  const [formData, setFormData] = useState({
+    succeeded: false,
+    redirect: false,
+    processing: '',
+    email1: '',
+    email2: '',
+    address: '',
+    city: '',
+    country: '',
+    name: '',
+  });
   const [error, setError] = useState(null);
-  const [processing, setProcessing] = useState('');
   const [disabled, setDisabled] = useState(true);
-  const [email, setEmail] = useState('');
   const [clientSecret, setClientSecret] = useState('');
   const stripe = useStripe();
   const elements = useElements();
@@ -27,14 +35,30 @@ export default function CheckoutForm() {
   useEffect(() => {
     async function fetch() {
       const res = await api.post('/create-payment-intent', { 
-        items: cart 
+        items: cart,
+        address: {
+          line1: formData.address,
+          city: formData.city,
+          country: formData.country,
+        },
+        name: formData.name,
+        email: formData.email1,
       });
       setClientSecret(res.data.clientSecret);
     }
-    if (!succeeded) {
+    if (!formData.succeeded) {
       fetch();
     }
-  }, [cart, succeeded]);
+  }, [
+    cart,
+    setClientSecret,
+    formData.succeeded,
+    formData.address,
+    formData.city,
+    formData.country,
+    formData.name,
+    formData.email1,
+  ]);
   const cardStyle = {
     style: {
       base: {
@@ -52,13 +76,19 @@ export default function CheckoutForm() {
       }
     }
   };
+
   const handleChange = async (event) => {
     setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
   };
+
   const handleSubmit = async ev => {
     ev.preventDefault();
-    setProcessing(true);
+    setFormData({ ...formData, "processing": true });
+
+    //confirm email
+
+    //confirm stripe
     const payload = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
         card: elements.getElement(CardElement)
@@ -66,39 +96,81 @@ export default function CheckoutForm() {
     });
     if (payload.error) {
       setError(`Payment failed ${payload.error.message}`);
-      setProcessing(false);
+      setFormData({ ...formData, "processing": false });
+
     } else {
       setError(null);
-      setProcessing(false);
-      setSucceeded(true);
+      setFormData({ ...formData, "processing": false });
+      setFormData({ ...formData, "succeeded": true });
+
       await dispatch(setCartSold())
       setTimeout(() => {
-        setRedirect(true)
+        setFormData({ ...formData, "redirect": true });
       }, 2000);
     }
   };
   return (
     <div>
-      {redirect ? (
+      {formData.redirect ? (
         <Redirect to="/cart" /> 
       ) : (
-        <div className="stripe">
+        <div className="stripe pattern-cross-dots-xl">
         <form className="stripe__form" id="payment-form" onSubmit={handleSubmit}>
           <input
             type="text"
-            value={email}
+            value={formData.email1}
             className="input"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setFormData({ ...formData, "email1": e.target.value })}
             placeholder="Enter email address"
           />
-          <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
+          <input
+            type="text"
+            value={formData.email2}
+            className="input input__group"
+            onChange={(e) => setFormData({ ...formData, "email2": e.target.value })}
+            placeholder="Confirm email address"
+          />
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            className="input"
+            onChange={(e) => setFormData({ ...formData, "address": e.target.value })}
+            placeholder="Address"
+          />
+          <input
+            type="text"
+            value={formData.city}
+            className="input input__group"
+            onChange={(e) => setFormData({ ...formData, "city": e.target.value })}
+            placeholder="City"
+          />
+          <input
+            type="text"
+            value={formData.country}
+            className="input input__group"
+            onChange={(e) => setFormData({ ...formData, "country": e.target.value })}
+            placeholder="Country"
+          />
+          <input
+            type="text"
+            value={formData.name}
+            className="input"
+            onChange={(e) => setFormData({ ...formData, "name": e.target.value })}
+            placeholder="Full Name"
+          />
+          <CardElement
+            id="card-element"
+            options={cardStyle}
+            onChange={handleChange}
+          />
           <button
-            disabled={processing || disabled || succeeded}
+            disabled={formData.processing || disabled || formData.succeeded}
             id="submit"
             className="stripe__button"
           >
             <span id="button-text">
-              {processing ? (
+              {formData.processing ? (
                 <div className="spinner" id="spinner"></div>
               ) : (
                 "Pay"
@@ -112,7 +184,7 @@ export default function CheckoutForm() {
             </div>
           )}
           {/* Show a success message upon completion */}
-          <p className={succeeded ? "result-message" : "result-message hidden"}>
+          <p className={formData.succeeded ? "result-message" : "result-message hidden"}>
             Success
           </p>
         </form>

@@ -10,7 +10,8 @@ import setAuthToken from './utils/setAuthToken';
 //Dashboardlike routes
 import Checkout from './pages/Checkout';
 
-import './assets/build/main-min.css';
+// import './assets/build/main-min.css';
+import './assets/css/main.css';
 
 const App = () => {
   useEffect(() => {

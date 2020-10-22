@@ -18,7 +18,7 @@ const setMetadata = items => {
     metadata += 
     'title: ' + cartItem.item.titles["ENG"] + ' ' +
     'quantity: ' + cartItem.quantity + ' ' +
-    'price:' + cartItem.item.price + ';' + ' '
+    'price: ' + cartItem.item.price + ';' + ' '
   })
   return metadata;
 };
@@ -27,12 +27,17 @@ const setMetadata = items => {
 // @access   Public
 router.post('/', [], async (req, res) => {
     try {
-      const { items } = req.body;
+      const { items, address, name , email } = req.body;
       // Create a PaymentIntent with the order amount and currency
       const paymentIntent = await stripe.paymentIntents.create({
         amount: calculateOrderAmount(items),
         currency: "usd",
         metadata: {items: setMetadata(items)},
+        receipt_email: email,
+        shipping: {
+          address: address,
+          name: name,
+        },
         description: "coffee purchase"
       });
       res.json({

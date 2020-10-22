@@ -12,10 +12,12 @@ function Product({
 }) {
   const dispatch = useDispatch();
   const [err, setErr] = useState();
+  const [quantity, setQuantity] = useState(1);
 
   //scroll top
   useEffect(() => {
     window.scrollTo(0, 0)
+    setQuantity(1)
   }, [match.params.id])
 
   //set Product
@@ -61,9 +63,10 @@ function Product({
               <ul>
                 <li>{product.origin}</li>
                 <li>{product.type}</li>
+                <li>{product.weight["KG"]} kg</li>
               </ul>
               <p className="price">{currency}{product.price}</p>
-              <AddToCart item={product}/>
+              <AddToCart item={product} quantity={quantity} setQuantity={setQuantity} />
             </div>
           </Fragment>
         )}

@@ -91,10 +91,6 @@
 .article:nth-of-type(2n - 1){
   background-color: $light_yellow;
 
-  &::before {
-
-  }
-
   @include breakpoint($medium_device) {
     flex-direction: row-reverse;
   }
@@ -102,7 +98,8 @@
 
 // 2nd article 2n
 .article:nth-of-type(2n){ 
-  background-color: $background_white;
+  background-color: $white;
+  color: $primary-dark;
   text-align: right; 
 
   .article__content {

@@ -34,6 +34,7 @@ router.post(
       imgUrl,
       description,
       titles,
+      weight,
       stock,
     } = req.body;
 
@@ -46,6 +47,7 @@ router.post(
         imgUrl,
         description,
         titles,
+        weight,
         stock,
       });
 
@@ -144,6 +146,7 @@ router.put('/:id', [ checkObjectId('id')], async (req, res) => {
     imgUrl,
     description,
     titles,
+    weight,
     stock,
   } = req.body;
 
@@ -153,6 +156,7 @@ router.put('/:id', [ checkObjectId('id')], async (req, res) => {
   if (imgUrl) productFields.imgUrl = imgUrl;
   if (description) productFields.description = description;
   if (titles) productFields.titles = titles;
+  if (weight) productFields.weight = weight;
   if (stock) productFields.stock = stock;
 
   try {

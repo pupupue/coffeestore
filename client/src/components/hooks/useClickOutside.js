@@ -3,13 +3,14 @@ import { useEffect } from "react";
 /**
  * Hook that alerts clicks outside of the passed ref
  */
-function useClickOutside(ref, setToggleClass) {
+function useClickOutside(refMenu, refButton, toggleClass, setToggleClass) {
   useEffect(() => {
 
     function handleClickOutside(event) {
-      if (ref.current && !ref.current.contains(event.target)) {
-        if(setToggleClass === false || setToggleClass === true) {
-
+      if (refMenu.current && !refMenu.current.contains(event.target)
+      && refButton.current && !refButton.current.contains(event.target)) {
+        if(toggleClass === false) {
+          
         } else {
           setToggleClass()
         }
@@ -20,7 +21,7 @@ function useClickOutside(ref, setToggleClass) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ref, setToggleClass]);
+  }, [refButton, refMenu, toggleClass, setToggleClass]);
 }
 
 export default useClickOutside;

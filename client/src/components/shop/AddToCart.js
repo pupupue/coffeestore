@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart, updateCart } from '../../store/actions/cart';
 import { setBlink } from '../../store/actions/blink';
 
-function AddToCart({item}) {
+function AddToCart({item , quantity, setQuantity}) {
   const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState(1);
   const { cartItem } = useSelector(state => ({
     cartItem: state.cart.cart.filter(cartItem => cartItem.item._id === item._id),
   }))

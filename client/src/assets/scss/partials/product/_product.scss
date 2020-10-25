@@ -2,6 +2,7 @@
   font-size: $phi_up;
   color: $secondary !important;
   font-weight: 900 !important;
+  text-align: center;
 }
 
 .product__container {
@@ -60,7 +61,7 @@
 .product__details {
   color: $primary-light;
   width: 100%;
-  min-width: 365px;
+  min-width: 40vw;
 
   * + * {
     margin-top: 1.5rem;
@@ -80,6 +81,7 @@
   
   .price {
     font-size: $phi_up;
+    text-align: left;
   }
 
   ul {
@@ -119,12 +121,23 @@
 .add-to-cart {
   margin: 1em 0 1em 3rem;
   font-weight: 900;
-
-  * + * {
-    margin-top: 0;
-    margin-left: .75rem;
-  }
   user-select: none;
+  .counter {
+    margin-right: .75rem;
+  }
+  * + * {
+    margin-top: .75rem;
+  }
+
+  @include breakpoint($large_mobile) {
+    .counter {
+      margin-right: 0;
+    }
+    * + * {
+      margin-top: 0;
+      margin-left: .75rem;
+    }
+  }
 }
 
 .counter {

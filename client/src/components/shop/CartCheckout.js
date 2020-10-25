@@ -18,7 +18,7 @@ function CartCheckout({cart}) {
   return (
     <div className="cart__checkout">
       <div>
-        <span>TOTAL:  ${calcTotal(cart)}</span>
+        <span>TOTAL:   ${calcTotal(cart)}</span>
       </div>
       <Link 
         className="button button-buy"

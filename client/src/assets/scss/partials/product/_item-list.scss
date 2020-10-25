@@ -61,9 +61,15 @@
       width: 80%;
       height: 80%;
     }
+    .price {
+      transition: transform .2s;
+    }
 
     &:hover {
       transform: scale(1.05);
+      .price{
+        transform: scale(1.2);
+      }
     }
   }
 

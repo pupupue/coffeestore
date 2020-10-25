@@ -14,6 +14,16 @@ const {
 // Add to cart
 export const addToCart = formData => async dispatch => {
   const { item, quantity } = formData;
+
+  let localcart = JSON.parse(localStorage.getItem('cart') || '[]');
+  if (localcart !== []) {
+    localcart.push(formData)
+    localStorage.setItem('cart', JSON.stringify(localcart))
+  } else {
+    localcart.push(formData)
+    localStorage.setItem('cart', JSON.stringify(localcart))
+  }
+
   try {
     dispatch({
       type: ADD,
@@ -42,6 +52,17 @@ export const createCart = () => async dispatch => {
 // UPDATE cart
 export const updateCart = formData => async dispatch => {
   const { item, quantity } = formData;
+
+  let localcart = JSON.parse(localStorage.getItem('cart') || '[]');
+  if (localcart !== []) {
+    const index = localcart.findIndex(cartItem => cartItem.item._id === item._id);
+    let newCart = localcart;
+    newCart[index] = formData;
+    localStorage.setItem('cart', JSON.stringify(newCart))
+  } else {
+    //usermeddling
+  }
+
   try {
     dispatch({
       type: UPDATE,
@@ -56,6 +77,15 @@ export const updateCart = formData => async dispatch => {
 
 // DELETE cart item
 export const deleteFromCart = id => async dispatch => {
+
+  let localcart = JSON.parse(localStorage.getItem('cart') || '[]');
+  if (localcart !== []) {
+    let newCart = localcart.filter(cartItem => cartItem.item._id !== id);
+    localStorage.setItem('cart', JSON.stringify(newCart))
+  } else {
+    //usermeddling
+  }
+
   try {
     dispatch({
       type: DELETE,
@@ -70,6 +100,7 @@ export const deleteFromCart = id => async dispatch => {
 
 // SELL cart
 export const sellCart = (cart) => async dispatch => {
+  localStorage.removeItem('cart');
   try {
     Promise.all(cart.map(async (cartItem) => {
       await api.put(`/product/sell/${cartItem.item._id}`, {quantity: cartItem.quantity})

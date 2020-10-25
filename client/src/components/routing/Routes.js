@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Navbar from '../../parts/Navbar';
 import Footer from '../../parts/Footer';
+import ScrollUp from '../../parts/ScrollUp';
 //routes
 //needs auth components
 //use for admin access
@@ -43,6 +44,7 @@ const Routes = props => {
         <Route component={NotFound} />
       </Switch>
     </div>
+    <ScrollUp />
     <Footer />
   </Fragment>
     

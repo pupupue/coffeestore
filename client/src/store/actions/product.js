@@ -8,16 +8,17 @@ const {
   LOAD_ALL_FT,
   LOAD_AMOUNT,
   LOAD_ONE,
+  SET_FILTERED,
   DELETE,
   UPDATE,
   ERROR,
+  NULL
 } = PRODUCT;
 
 // Create PRODUCT
 export const createProduct = formData => async dispatch => {
   try {
     const res = await api.post('/product', formData);
-
     dispatch({
       type: CREATE,
       payload: res.data
@@ -33,7 +34,6 @@ export const createProduct = formData => async dispatch => {
 export const getAllProducts = () => async dispatch => {
   try {
     const res = await api.get('/product');
-
     dispatch({
       type: LOAD_ALL,
       payload: res.data
@@ -64,13 +64,24 @@ export const getProducts = (amount) => async dispatch => {
 export const getAllFtProducts = () => async dispatch => {
   try {
     const res = await api.get('/ftproduct');
-
     dispatch({
       type: LOAD_ALL_FT,
       payload: res.data
     });
   } catch (err) {
-    console.log(err)
+    dispatch({
+      type: ERROR,
+    });
+  }
+};
+
+// apply filter on products in shop
+export const applyFilter = (type = NULL) => async dispatch => {
+  try {
+    dispatch({
+      type: type,
+    });
+  } catch (err) {
     dispatch({
       type: ERROR,
     });
@@ -108,12 +119,10 @@ export const deleteProduct = id => async dispatch => {
 
   try {
     await api.delete(`/product/${id}`);
-
     dispatch({
       type: DELETE,
       payload: id
     });
-
   } catch (err) {
     dispatch({
       type: ERROR,
@@ -125,12 +134,10 @@ export const deleteProduct = id => async dispatch => {
 export const updateProduct = ({id, formData}) => async dispatch => {
   try {
     const res = await api.put(`/product/${id}`, formData);
-
     dispatch({
       type: UPDATE,
       payload: res.data
     });
-
   } catch (err) {
     dispatch({
       type: ERROR,
@@ -138,3 +145,15 @@ export const updateProduct = ({id, formData}) => async dispatch => {
   }
 };
 
+// set filtered products array
+export const setFilteredProducts = () => async dispatch => {
+  try {
+    dispatch({
+      type: SET_FILTERED,
+    });
+  } catch (err) {
+    dispatch({
+      type: ERROR,
+    });
+  }
+};

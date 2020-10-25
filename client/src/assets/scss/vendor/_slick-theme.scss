@@ -152,7 +152,36 @@ $slick-opacity-not-active: 0.25 !default;
     //     }
     // }
 }
+.slick-prev-dark {
+  // top: 50%;
+  background-image: url('../img/left-arrow-dark.svg');
+  left: 12px;
+  visibility: hidden;
 
+  @include breakpoint($tab_device) {
+    visibility: visible;
+  }
+
+  @include breakpoint($medium_device) {
+    left: 25px;
+  }
+}
+
+.slick-next-dark {
+  margin-top: 0;
+  // top: 50%;
+  background-image: url('../img/right-arrow-dark.svg');
+  right: 12px;
+  visibility: hidden;
+
+  @include breakpoint($tab_device) {
+    visibility: visible;
+  }
+
+  @include breakpoint($medium_device) {
+    right: 25px;
+  }
+}
 /* Dots */
 
 .slick-dotted.slick-slider {

@@ -16,10 +16,6 @@
 
   @include breakpoint($large_mobile) {
     display: flex !important;
-    .cart__info_first {
-      margin-left: 40%;
-    }
-
   }
 }
 
@@ -30,6 +26,7 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
+  text-align: center;
   padding: 3em 1em;
   border-top: 1px lighten($primary-light, 57%) solid;
   border-bottom: 1px lighten($primary-light, 57%) solid;
@@ -42,45 +39,50 @@
   .cart__delete {
     flex: 0 0 3%;
   }
-  img {
+  img, .cart__img {
     width: 25%;
     flex: 0 0 33%;
   }
-  .cart__item_titles {
+  .cart__item_titles, .cart__item_title {
     flex: 0 0 50%;
   }
-
+  .origin {
+    display: none;
+  }
   .price {
     font-size: 1.2em;
   }
-
-  .counter {
+  .counter, .quantity {
     margin-left: auto;
   }
 
-  .origin {
-    display: none !important;
-  }
-
   @include breakpoint($large_mobile) {
-    justify-content: space-evenly;
-    img {
+    justify-content: space-between;
+    img, .cart__img{
       width: 15%;
-    }
-    .cart__delete, img, .cart__item_titles {
       flex: none;
     }
-    .cart__item_titles {
-      margin-right: 0;
+    .cart__delete{
+      flex: none
     }
-    .counter {
+    .cart__item_titles, .cart__item_title {
+      flex: 0 0 25%;
+    }
+    .counter, .quantity {
       margin-left: 0;
+    }
+    .price {
+      flex: 0 0 15%;
     }
   }
 
   @include breakpoint($medium_device) {
+    .cart__item_titles, .cart__item_title {
+      flex: 0 0 20%;
+    }
     .origin {
-      display: block !important;
+      flex: 0 0 15%;
+      display: block;
     }
     .price {
       font-size: 1em;
@@ -109,8 +111,8 @@
 }
 
 .cart__delete {
-  width: 1em;
-  height: 1em; 
+  width: 1.2em;
+  height: 1.2em; 
   fill: $primary-light;
   stroke: $primary-light;
   cursor: pointer;

@@ -80,7 +80,6 @@ export const deleteStore = id => async dispatch => {
 
 // update stores image
 export const updateStoreImage = ({id, img}) => async dispatch => {
-  console.log(img)
   await api.put(`/store/img/${id}`, img)
   try {
     const res = await api.put(`/store/img/${id}`, img);

@@ -10,6 +10,13 @@ const {
   DELETE,
   UPDATE,
   ERROR,
+  NULL,
+  SET_FILTERED,
+  FILTER_ALL,
+  FILTER_FEATURED,
+  FILTER_PRICE_ASC,
+  FILTER_PRICE_DESC,
+  DONT_FILTER_BY
 } = PRODUCT;
 
 const initialState = {
@@ -17,6 +24,7 @@ const initialState = {
   loading: true,
   error: null,
   products: null,
+  filteredproducts: null,
   ftproducts: null,
   product: null
 };
@@ -30,7 +38,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: false,
-        products: payload
+        products: payload,
       };
     case LOAD_ONE:
     case CREATE:
@@ -59,11 +67,45 @@ export default function (state = initialState, action) {
         products: state.products.map(product => product._id === payload._id ? 
           payload : product)
       };
+    case SET_FILTERED:
+    case FILTER_ALL:
+      return {
+        ...state,
+        filteredproducts: state.products
+      };
+    case FILTER_FEATURED:
+      return {
+        ...state,
+        filteredproducts: state.ftproducts
+      };
+    case FILTER_PRICE_ASC:
+      var byPriceAsc = state.filteredproducts.slice(0);
+      byPriceAsc.sort(function(a,b) {
+          return parseFloat(a.price) - parseFloat(b.price);
+      });
+      return {
+        ...state,
+        filteredproducts: byPriceAsc
+      };
+    case FILTER_PRICE_DESC:
+      var byPriceDesc = state.filteredproducts.slice(0);
+      byPriceDesc.sort(function(a,b) {
+          return parseFloat(b.price) - parseFloat(a.price);
+      });
+      return {
+        ...state,
+        filteredproducts: byPriceDesc
+      };
+    case NULL:
+    case DONT_FILTER_BY:
+      return {
+        ...state,
+      };
     case ERROR:
       return {
         ...state,
         loading: false,
-        error: payload
+        error: payload ? payload : null
       };
     default:
       return state;

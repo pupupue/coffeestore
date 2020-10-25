@@ -40,7 +40,7 @@ function About() {
   return (
     <Fragment>
       <Hero 
-        imgName="coffee-cettle.jpg"
+        imgName="coffee-cettle"
         text="Our Story"
       />
       <LogoSecondary />
@@ -48,7 +48,7 @@ function About() {
         text={aboutustext}
       />
       <Hero 
-        imgName="barista-male.jpg"
+        imgName="barista-male"
         text="Our Stores"
       />
       <HeadingSection mainTxt="Our Coffee" secondaryTxt="我们的咖啡" />

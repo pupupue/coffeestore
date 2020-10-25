@@ -98,3 +98,24 @@
     box-shadow: 0.1em 0.1em $secondary;
   }
 }
+
+.scroll-up {
+  position: fixed;
+  display: flex;
+  bottom: 1em;
+  right: 1em;
+
+}
+
+.scroll-up__icon {
+  height: 4em;
+  width: 4em;
+  cursor: pointer;
+  fill: $secondary;
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    fill: $secondary-light;
+    transform: scale(1.2);
+  }
+}

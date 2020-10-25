@@ -203,8 +203,6 @@ router.put('/sell/:id', [ checkObjectId('id')], async (req, res) => {
       return res.status(404).json({ msg: 'Product not found' });
     }
     if (quantity) productFields.stock = product.stock - quantity;
-    console.log(quantity)
-
     //update
     product = await Product.findOneAndUpdate(
       { _id: req.params.id }, //filter

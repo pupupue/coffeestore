@@ -10,7 +10,7 @@ const {
   SOLD
 } = CART;
 
-let localCart = localStorage.getItem('cart');
+let localCart = JSON.parse(localStorage.getItem('cart'));
 let cart = [];
 if (localCart !== null) {
   cart = localCart;

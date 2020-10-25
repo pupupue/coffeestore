@@ -1,12 +1,17 @@
 import React, { useEffect, Fragment } from 'react';
 import HeadingSection from '../components/heading/HeadingSection';
 import ItemList from '../components/shop/ItemList';
-import Aside from '../parts/Aside';
+import FilterBy from '../components/shop/filter/FilterBy';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllProducts } from '../store/actions/product';
+import { getAllProducts, getAllFtProducts, setFilteredProducts } from '../store/actions/product';
+import Loading from '../components/loading/Loading';
 
 function Shop() {
   const dispatch = useDispatch();
+  const { products, filteredproducts } = useSelector(state => ({
+    products: state.product.products,
+    filteredproducts: state.product.filteredproducts,
+  }))
   
   //scroll top
   useEffect(() => {
@@ -14,19 +19,27 @@ function Shop() {
   }, [])
   // get Products
   useEffect(() => {
-    dispatch(getAllProducts());
+    dispatch(getAllProducts())
+    dispatch(getAllFtProducts())
   }, [dispatch]);
-  
-  const { items } = useSelector(state => ({
-    items: state.product.products,
-  }))
+
+  // set filterproducts
+  useEffect(() => {
+    if (products !== null) {
+      dispatch(setFilteredProducts())
+    }
+  }, [dispatch, products]);
 
   return (
     <Fragment>
       <HeadingSection mainTxt="Shop" secondaryTxt="店" />
       <div className="shop-container">
-        <Aside />
-        <ItemList items={items} />
+        <FilterBy />
+        {!filteredproducts ? (
+          <Loading />
+          ) : (
+          <ItemList items={filteredproducts} />
+        )}
       </div>
     </Fragment>
   )

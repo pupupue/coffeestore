@@ -4,7 +4,7 @@ import { updateCart, deleteFromCart } from '../../store/actions/cart';
 
 function CartItem({item, quantity}) {
   const dispatch = useDispatch();
-  const publicUrl = process.env.PUBLIC_URL + '/images/';
+  const imgPath = process.env.PUBLIC_URL +'/images/';
 
   return (
     <div className="cart__item">
@@ -20,7 +20,13 @@ function CartItem({item, quantity}) {
           <line x1="50" y2="50" />
         </svg>
       </div>
-      <img src={publicUrl + item.imgUrl} alt=""/>
+      <img
+        src={imgPath + item.imgUrl + '-large.png'}
+        srcSet={imgPath + item.imgUrl + '-small.png 352w,'
+        + imgPath + item.imgUrl + '-medium.png 768w,'
+        + imgPath + item.imgUrl + '-large.png 1200w,'}
+        alt=""
+      />
       <div className="cart__item_titles">
         <p>{item.titles['ENG']}</p>
         <p>{item.titles['ZH']}</p>

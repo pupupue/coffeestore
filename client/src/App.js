@@ -9,9 +9,10 @@ import { loadUser } from './store/actions/auth';
 import setAuthToken from './utils/setAuthToken';
 //Dashboardlike routes
 import Checkout from './pages/Checkout';
+import Success from './pages/Success';
 
-// import './assets/build/main-min.css';
-import './assets/css/main.css';
+import './assets/build/main-min.css';
+// import './assets/css/main.css';
 
 const App = () => {
   useEffect(() => {
@@ -26,6 +27,7 @@ const App = () => {
         <div className="flex-container">
           <Switch>
             <Route exact path="/checkout" component={Checkout} />
+            <Route exact path="/success" component={Success} />
             <Route component={Routes} />
           </Switch>
         </div>

@@ -41,7 +41,6 @@ function Product({
   const currency = "$";
 
   if (err) {
-    console.log('redirect')
     return <Redirect to="/404" />;
   }
 
@@ -53,7 +52,10 @@ function Product({
         ) : (
           <Fragment>
             <img
-              src={imgPath + product.imgUrl}
+              src={imgPath + product.imgUrl + '-large.png'}
+              srcSet={imgPath + product.imgUrl + '-small.png 352w,'
+              + imgPath + product.imgUrl + '-medium.png 768w,'
+              + imgPath + product.imgUrl + '-large.png 1200w,'}
               alt=""
             />
             <div className="product__details">

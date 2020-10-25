@@ -113,7 +113,8 @@
   cursor: pointer;
   fill: $secondary;
   transition: all 0.2s ease-in;
-
+  user-select: none;
+  
   &:hover {
     fill: $secondary-light;
     transform: scale(1.2);

@@ -1021,7 +1021,8 @@ img {
   width: 4em;
   cursor: pointer;
   fill: #d27a52;
-  transition: all 0.2s ease-in; }
+  transition: all 0.2s ease-in;
+  user-select: none; }
   .scroll-up__icon:hover {
     fill: #ffaa7f;
     transform: scale(1.2); }
@@ -1925,6 +1926,7 @@ img {
       .list-item a:hover .price {
         transform: scale(1.2); }
   .list-item .vertical-sidetext {
+    text-align: start;
     font-size: 1.5em;
     margin-top: .5em;
     margin-right: 1em; }

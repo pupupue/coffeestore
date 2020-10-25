@@ -114,6 +114,7 @@
   fill: $secondary;
   transition: all 0.2s ease-in;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
   
   &:hover {
     fill: $secondary-light;

@@ -1914,6 +1914,8 @@ img {
     text-align: center;
     flex-direction: column;
     text-decoration: none; }
+    .list-item a .vertical-sidetext {
+      text-align: start !important; }
     .list-item a img {
       margin-left: auto;
       margin-right: auto;
@@ -1927,7 +1929,6 @@ img {
       .list-item a:hover .price {
         transform: scale(1.2); }
   .list-item .vertical-sidetext {
-    text-align: start !important;
     font-size: 1.5em;
     margin-top: .5em;
     margin-right: 1em; }

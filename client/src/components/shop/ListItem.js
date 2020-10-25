@@ -23,7 +23,7 @@ function ListItem({
           + imgPath + imgUrl + '-large.png 1200w,'}
           alt=""
         />
-        <h3 className="vertical-sidetext">{title_foreign}</h3>
+        <h3 className="vertical-sidetext" style={{textAlign: "start" }}>{title_foreign}</h3>
         <div className="item__details">
           <h4>{title_main}</h4>
           <h4 className="bottom-light">{origin}</h4>

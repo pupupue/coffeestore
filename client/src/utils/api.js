@@ -3,8 +3,8 @@ import store from '../store';
 import { USER } from '../store/types';
 
 const api = axios.create({
-  // baseURL: 'http://localhost:5000/api',// for localhost
-  baseURL: '/api',
+  baseURL: 'http://localhost:5000/api',// for localhost
+  // baseURL: '/api',
   headers: {
     'Content-Type': 'application/json'
   }

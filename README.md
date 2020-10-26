@@ -25,3 +25,4 @@
 4. run npm script for dev/heroku 
   1. if heroku see https://devcenter.heroku.com/articles/heroku-cli
 ---
+### Created By: Janis Andrejs Laurins janislaurins@gmail.com

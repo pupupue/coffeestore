@@ -1,7 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://pupupue:spiderpidars19@cluster0.mwqjr.mongodb.net/coffeestore?retryWrites=true&w=majority",
-    "localmongodb": "mongodb://127.0.0.1:27017/coffeestore",
-    "jwtSecret": "asdoaasasd1ausfa8ddjad",
-    "githubClientId": "255221cd03b1e9cde832",
-    "githubToken": "603cdec445ff70bd6ba3eaabbfabf406809c78bb"
-}

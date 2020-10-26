@@ -5,6 +5,9 @@
 ---
 ## Technologies and features
 * React.js Redux.js MongoDB Express.js [mern]
+  * **ALL functional components**
+  * no class components
+  * built with api & custom hooks
 * Scss, gulp.js, post.css & cssnano
 * Slick carousel, Leaflet Maps, Pattern.css, Stripe Payments
 * Design:
